@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">AutoSwitch Mobile</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">AutoSwitch for android</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">AutoSwitch Mobile</string>
@@ -14,4 +14,5 @@
     <string name="nav_header_subtitle">autoswitch@kamilklecha.dev</string>
     <string name="home_welcome">Welcome in AutoSwitch Mobile!</string>
     <string name="home_next_screen">Go to PC control</string>
+    <string name="title_activity_settings">Settings</string>
 </resources>
