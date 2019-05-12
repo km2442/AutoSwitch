@@ -1,7 +1,6 @@
 package dev.kamilklecha.autoswitchmobile;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -16,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        sc = new SocketCommunicator((TextView) findViewById(R.id.tv_reply_from_server));
 
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -47,7 +46,7 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-        btn = findViewById(R.id.Main_btn);
+        btn = findViewById(R.id.Main_Activitysettings);
         View.OnClickListener cl = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,7 +57,9 @@ public class MainActivity extends AppCompatActivity
         btn.setOnClickListener(cl);
 
         final Button buttonSend = (Button) findViewById(R.id.btn_send);
-        Button buttonSetup = (Button) findViewById(R.id.btn_setup);
+        final Button buttonSetup = (Button) findViewById(R.id.btn_setup);
+        final EditText IPGetter = (EditText) findViewById(R.id.Main_IP);
+        final EditText PortGetter = (EditText) findViewById(R.id.Main_Port);
 
         mEditTextSendMessage = (EditText) findViewById(R.id.edt_send_message);
 
@@ -72,9 +73,15 @@ public class MainActivity extends AppCompatActivity
         buttonSetup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sc.sendMessage("Hi, " + Build.MODEL + " here");
-                sc.startReceiver();
-                buttonSend.setEnabled(true);
+                if(IPGetter.getText().toString().length()!=0 && PortGetter.getText().toString().length() != 0) {
+                    sc = new SocketCommunicator((TextView) findViewById(R.id.tv_reply_from_server),
+                            IPGetter.getText().toString(),
+                            Integer.parseInt(PortGetter.getText().toString()));
+                    buttonSend.setEnabled(true);
+                }
+                else {
+                    Toast.makeText(MainActivity.this, "Fill IP and Port!", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

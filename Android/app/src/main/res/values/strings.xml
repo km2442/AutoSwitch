@@ -13,6 +13,6 @@
     <string name="menu_tools">Tools</string>
     <string name="nav_header_subtitle">autoswitch@kamilklecha.dev</string>
     <string name="home_welcome">Welcome in AutoSwitch Mobile!</string>
-    <string name="home_next_screen">Go to PC control</string>
+    <string name="home_next_screen">Go to Settings</string>
     <string name="title_activity_settings">Settings</string>
 </resources>
