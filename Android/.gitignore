@@ -1,5 +1,6 @@
 # Built application files
 /app/*
+!/app/src
 /build/*
 
 # Crashlytics configuations
