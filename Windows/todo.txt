@@ -1,0 +1,25 @@
+- przebudowanie aktywnych zadañ
+- przebudowanie autouruchamiania
+- 'dynamiczna' liczba zadañ, bez limitów
+- naprawa uœpienia / hibernacji
+- stworzenie klasy 'task'
+
+- powtarzanie zadañ co np. 5 minut
+- uruchamianie akcji po np. 3 godzinach pracy chrome'a
+- wiêcej warunków uruchomienia zadañ, np. 100% u¿ycia procesora
+- obs³uga multimediów (np. muzyki)
+- mo¿liwoœæ zmany g³oœnoœci
+- mo¿liwoœæ zmany profilii zasilania
+- w³aczanie / wy³¹czanie kart sieciowych, bluetooth
+- obs³uga skrótów klawiaturowych
+- mo¿liwoœæ uruchamiania / zamykania innych programów z parametrami
+- uruchamianie / wy³¹czanie us³ug
+- tworzenie customowych skrótów
+- customowe powiadomienia u¿ytkownika
+- obs³uga aplikacji poprzez wewnêtrzn¹ konsolê
+- obs³uga przestarza³ych zadañ
+
+- stworzenie dokumentacji
+- stworzenie aplikacji na androida
+- kontrola AutoSwitcha na innych komputerach w sieci lokalnej
+- mo¿liwoœæ zdalnej kontrolii

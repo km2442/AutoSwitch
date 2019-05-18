@@ -1,0 +1,157 @@
+>1.0.2.0 (19.11.2018):
+- Updated Qt to 5.11.2 version
+- Updated english translation
+- Reimplemented time service
+- Fixed buttons on Active Tasks screen
+- Code cleaning & optimisation
+
+>1.0.1.0 (19.11.2017):
+- Fixed computer shutdown from tray icon
+- Fixed changelog and license dialog
+
+>1.0.0.0 (11.11.2017):
+- Initial final release
+- Added option to force close (or not) apps while shutdown, reboot and logout user
+- Added 'Send Opinion' dialog
+- Added 'force' options to cmd commands
+- Added sending anonymous statistics
+- Updated Qt to 5.9.2 version
+- Using WinApi to shutdown, reboot computer and logout user
+- Moved global autorun folder to 'ProgramData'
+- Moved LGPLv3 license and changelog texts to resources
+- Completely redesigned MainWindow dialog
+- Redesigned Settings dialog
+- Redesigned Changelog / License dialog
+- Improved system tray icon
+- Fixed configuration files location
+- Fixed Application hiding on autorun
+- Fixed showing MainWindow by double-click app icon
+- Fixed multi instance of application
+- Fixed import / export file dialog's
+- Fixed Lock computer execution from tray icon
+- Fixed some minor bugs
+- Removed unneeded qGarbageCollector module
+- Code cleaning & optimisation
+
+#Helper app >1.2
+- Updated Qt to 5.9.2 version
+
+>0.1.1.0 RC (06.11.2016):
+- Added option to configure Tray Icon
+- Removed unused functions
+- Code optimisation
+- UI improvements
+
+>0.1.0.1 RC (22.09.2016):
+- Fixed hibernate warning
+- Fixed Show program function without password set
+
+>0.1.0.0 RC (15.07.2016):
+- Added option to enable password security
+- Added custom time options for Tray Icon
+- Added option to disable MainWindow hide dialog
+- Got out of Beta! Now it's Release Candidate!
+- Updated Qt to 5.7 version
+- Tray icon behaviour improvements
+- Improved translations
+- UI improvements
+- Fixed Active Tasks table width
+- Fixed app icon
+- Fixed app crash when close Changelog or License LGPL dialog
+- Reduced RAM usage
+- Removed license dialog
+- Updated Qt trademark icon
+
+#Helper app >1.1
+- Added functions connected with password security
+- Updated Qt to 5.7 version
+
+>0.0.2.5 Beta (26.02.2016):
+- Added detecting language on Firstrun dialog
+
+>0.0.2.4 Beta (25.02.2016):
+- Added and updated most icons
+- Fixed global autorun
+
+>0.0.2.3 Beta (16.02.2016):
+- Signed Applicaton with certificate
+- Added option to Lock workstation
+- Added more TrayIcon actions
+- Added Help dialog for all actions
+- Added option to autorun globally (use small helper app)
+- Added icons to TrayIcon Menu
+- Merged Automatic actions and Time Actions into one page
+- Improved Test Mode
+- Improved cmd options
+- Improved Translations
+- Fixed Autorun
+- Fixed Autorun State
+- Code cleaning
+
+>0.0.2.21 Beta (16.01.2016):
+- Fixed hibernation
+
+>0.0.2.2 Beta (15.01.2016):
+- Added option to hibernate computer
+- Some ui improvements
+- Improved English translation
+
+>0.0.2.1 Beta (15.01.2016):
+- Added option to import / export configuration files
+- Added option to restore default settings
+- Small improvements
+- Fixed Monitor off function in Autorun
+
+>0.0.2.0 Beta (13.01.2016):
+- Added checking if config files exist
+- Improved performance
+- Code cleaning
+- Fixed configuration files saving
+- Fixed application restart
+- Fixed default setting loading every time when settings or autorun dialog is showing
+
+>0.0.1.9 Beta (26.12.2015):
+- Changed configuration files location (files are now in "%Appdata%")
+
+>0.0.1.8 Beta (13.12.2015):
+- Added ability to choose language on first run
+- Added ability to restart application immediately after language change
+
+>0.0.1.7 Beta (26.11.2015):
+- Added ability to change language
+- Added English translation
+- Reduced application size
+
+>0.0.1.6 Beta (13.11.2015):
+- Added time synchronization with system time
+- Small ui improvements
+
+>0.0.1.5 Beta (01.11.2015):
+- Fixed displaying Autorun tasks
+- Moved RAM monitor directly to Settings
+
+>0.0.1.4 Beta (21.10.2015):
+- Updated Qt to 5.5.1 version.
+- Fixed exiting when no task was active
+- Fixed cmd commands
+
+>0.0.1.3 Beta (19.10.2015):
+- Added option to turn monitor off
+- Added option to turn off, restart, hibernate computer; logout current user; switch off monitor from cmd
+- Added option to turn off monitor from tray icon
+- Code cleaning
+- Improved polish translation
+- Small bug fixes
+
+>0.0.1.2 Beta (30.09.2015):
+- Removed unnecessary DLL's
+- Memory usage optimisation
+- Small bug fixes
+
+>0.0.1.1 Beta (26.09.2015):
+- Added Ram monitor to Developer Options
+- Small bug fixes
+
+>0.0.1.0 Beta (20.09.2015):
+- Added changelog
+- Initial Beta release

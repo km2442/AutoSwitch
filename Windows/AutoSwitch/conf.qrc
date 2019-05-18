@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/ConfigurationFiles">
+        <file>resources/ConfigurationFiles/autorun.ini</file>
+        <file>resources/ConfigurationFiles/settings.ini</file>
+    </qresource>
+</RCC>

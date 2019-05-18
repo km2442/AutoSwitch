@@ -1,0 +1,48 @@
+<RCC>
+    <qresource prefix="/translations">
+        <file>Resources/Languages/English.qm</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <file>Resources/Icons/accept.png</file>
+        <file>Resources/Icons/automat.png</file>
+        <file>Resources/Icons/autorun.png</file>
+        <file>Resources/Icons/cancel.png</file>
+        <file>Resources/Icons/changelog.png</file>
+        <file>Resources/Icons/hibernate.png</file>
+        <file>Resources/Icons/hidden.png</file>
+        <file>Resources/Icons/info.png</file>
+        <file>Resources/Icons/list.png</file>
+        <file>Resources/Icons/logout.png</file>
+        <file>Resources/Icons/monitor_off.png</file>
+        <file>Resources/Icons/question.png</file>
+        <file>Resources/Icons/RAM.png</file>
+        <file>Resources/Icons/reboot.png</file>
+        <file>Resources/Icons/refresh.png</file>
+        <file>Resources/Icons/save.png</file>
+        <file>Resources/Icons/settings.png</file>
+        <file>Resources/Icons/shutdown.png</file>
+        <file>Resources/Icons/start.png</file>
+        <file>Resources/Icons/synchronize_time.png</file>
+        <file>Resources/Icons/export.png</file>
+        <file>Resources/Icons/import.png</file>
+        <file>Resources/Icons/lock.png</file>
+        <file>Resources/Icons/show.png</file>
+        <file>Resources/Icons/default_settings.png</file>
+        <file>Resources/Icons/warning.png</file>
+    </qresource>
+    <qresource prefix="/pictures">
+        <file>Resources/Pictures/paypal.png</file>
+        <file>Resources/Pictures/QT.png</file>
+        <file>Resources/Pictures/wylacznik.png</file>
+        <file>Resources/Pictures/wylacznik2.png</file>
+        <file>Resources/Pictures/disabled.png</file>
+    </qresource>
+    <qresource prefix="/flags">
+        <file>Resources/Flags/pl.png</file>
+        <file>Resources/Flags/en.png</file>
+    </qresource>
+    <qresource prefix="/texts">
+        <file>Resources/Texts/changelog.txt</file>
+        <file>Resources/Texts/LGPLv3.txt</file>
+    </qresource>
+</RCC>

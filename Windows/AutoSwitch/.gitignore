@@ -1,0 +1,10 @@
+/Resources/Icons/Orginalne/*
+/Resources/Pictures/Orginal/*
+/qtsingleapplication/*
+!/qtsingleapplication/src/
+*.pro.user
+*.pro.user.*
+*.autosave
+*.autosave.*
+*.bak
+*.user

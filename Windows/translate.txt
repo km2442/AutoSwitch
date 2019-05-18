@@ -1,0 +1,1 @@
+"%programfiles(x86)%\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars32.bat" & lupdate.exe -pro AutoSwitch.pro -ts Resources\Languages\English.ts
