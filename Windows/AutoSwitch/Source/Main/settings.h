@@ -37,7 +37,7 @@ class Settings : public QDialog
 
 public:
     explicit Settings(QWidget *parent = 0);
-    static Settings* getInstance() { return &settingsInstance; }
+    static Settings *getInstance();
     void settingsSave(bool password, QString path);
     void settingsLoad();
     void changeHideDialog(bool i);
@@ -159,7 +159,6 @@ private slots:
 
 private:
     void Settings::closeEvent(QCloseEvent * event);
-    static Settings settingsInstance;
     Ui::Settings *ui;
 
     int current_theme = 0;

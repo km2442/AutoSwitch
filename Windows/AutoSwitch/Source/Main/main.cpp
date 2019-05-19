@@ -10,7 +10,7 @@
 
 #include "QtSingleApplication"
 
-QString appData, PrgrData, appVersion = "1.0.1.1";
+QString appData, PrgrData, appVersion = "1.0.2.0";
 bool autoRunned = 0;
 
 int main(int argc, char *argv[])

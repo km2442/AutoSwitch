@@ -1,7 +1,7 @@
 #include "settings.h"
 #include "ui_settings.h"
 
-Settings Settings::settingsInstance;
+Q_GLOBAL_STATIC(Settings, settingsInstance);
 
 Settings::Settings(QWidget *parent) :
     QDialog(parent),
@@ -32,6 +32,12 @@ Settings::Settings(QWidget *parent) :
     fexec = 0;
 }
 
+Settings *Settings::getInstance()
+{
+    //return settingsInstance;
+    return nullptr;
+}
+
 Settings::~Settings()
 {
     delete ui;
@@ -57,45 +63,45 @@ void Settings::settingsLoad()
     QSettings setting(appData + "/config/settings.ini", QSettings::IniFormat);
     setting.beginGroup("Settings");
     ui->Settings_Theme_Choose->setCurrentIndex(setting.value("WindowStyle").toInt());
-    ui->Settings_LanguageSelect->setCurrentIndex(setting.value("Language").toInt() - 1);
-    ui->Settings_Log->setCurrentIndex(setting.value("LogActions").toInt());
-    ui->Settings_Statistics->setCurrentIndex(setting.value("SendStatistics").toInt());
-    ui->Settings_MultiInstance->setCurrentIndex(setting.value("AllowMultiInstance").toInt());
-    ui->Settings_DeveloperMode->setCurrentIndex(setting.value("DeveloperOptions").toInt());
-    ui->Settings_HideDialogWarning->setCurrentIndex(setting.value("HideDialogWarning").toInt());
-    setting.endGroup();
+//    ui->Settings_LanguageSelect->setCurrentIndex(setting.value("Language").toInt() - 1);
+//    ui->Settings_Log->setCurrentIndex(setting.value("LogActions").toInt());
+//    ui->Settings_Statistics->setCurrentIndex(setting.value("SendStatistics").toInt());
+//    ui->Settings_MultiInstance->setCurrentIndex(setting.value("AllowMultiInstance").toInt());
+//    ui->Settings_DeveloperMode->setCurrentIndex(setting.value("DeveloperOptions").toInt());
+//    ui->Settings_HideDialogWarning->setCurrentIndex(setting.value("HideDialogWarning").toInt());
+//    setting.endGroup();
 
-    setting.beginGroup("TraySettings");
-    ui->Settings_Tray_Switch->setCurrentIndex(setting.value("TrayActive").toInt());
-    if (setting.value("ShutdownActive").toBool()) ui->Settings_Tray_Shutdown->setChecked(2);
-    else ui->Settings_Tray_Shutdown->setChecked(0);
-    if (setting.value("RebootActive").toBool()) ui->Settings_Tray_Reboot->setChecked(2);
-    else ui->Settings_Tray_Reboot->setChecked(0);
-    if (setting.value("SleepActive").toBool()) ui->Settings_Tray_Sleep->setChecked(2);
-    else ui->Settings_Tray_Sleep->setChecked(0);
-    if (setting.value("HibernateActive").toBool()) ui->Settings_Tray_Hibernate->setChecked(2);
-    else ui->Settings_Tray_Hibernate->setChecked(0);
-    if (setting.value("LogoffActive").toBool()) ui->Settings_Tray_Logoff->setChecked(2);
-    else ui->Settings_Tray_Logoff->setChecked(0);
-    if (setting.value("LockActive").toBool()) ui->Settings_Tray_Lock->setChecked(2);
-    else ui->Settings_Tray_Lock->setChecked(0);
-    if (setting.value("MonitorActive").toBool()) ui->Settings_Tray_Monitor->setChecked(2);
-    else ui->Settings_Tray_Monitor->setChecked(0);
-    setting.endGroup();
+//    setting.beginGroup("TraySettings");
+//    ui->Settings_Tray_Switch->setCurrentIndex(setting.value("TrayActive").toInt());
+//    if (setting.value("ShutdownActive").toBool()) ui->Settings_Tray_Shutdown->setChecked(2);
+//    else ui->Settings_Tray_Shutdown->setChecked(0);
+//    if (setting.value("RebootActive").toBool()) ui->Settings_Tray_Reboot->setChecked(2);
+//    else ui->Settings_Tray_Reboot->setChecked(0);
+//    if (setting.value("SleepActive").toBool()) ui->Settings_Tray_Sleep->setChecked(2);
+//    else ui->Settings_Tray_Sleep->setChecked(0);
+//    if (setting.value("HibernateActive").toBool()) ui->Settings_Tray_Hibernate->setChecked(2);
+//    else ui->Settings_Tray_Hibernate->setChecked(0);
+//    if (setting.value("LogoffActive").toBool()) ui->Settings_Tray_Logoff->setChecked(2);
+//    else ui->Settings_Tray_Logoff->setChecked(0);
+//    if (setting.value("LockActive").toBool()) ui->Settings_Tray_Lock->setChecked(2);
+//    else ui->Settings_Tray_Lock->setChecked(0);
+//    if (setting.value("MonitorActive").toBool()) ui->Settings_Tray_Monitor->setChecked(2);
+//    else ui->Settings_Tray_Monitor->setChecked(0);
+//    setting.endGroup();
 
-    setting.beginGroup("TraySettingsTime");
-    ui->Settings_Tray_ShutdownTime->setCurrentIndex(setting.value("ShutdownTime").toInt());
-    ui->Settings_Tray_RebootTime->setCurrentIndex(setting.value("RebootTime").toInt());
-    ui->Settings_Tray_SleepTime->setCurrentIndex(setting.value("SleepTime").toInt());
-    ui->Settings_Tray_HibernateTime->setCurrentIndex(setting.value("HibernateTime").toInt());
-    ui->Settings_Tray_LogoffTime->setCurrentIndex(setting.value("LogoffTime").toInt());
-    ui->Settings_Tray_LockTime->setCurrentIndex(setting.value("LockTime").toInt());
-    ui->Settings_Tray_MonitorTime->setCurrentIndex(setting.value("MonitorTime").toInt());
-    setting.endGroup();
+//    setting.beginGroup("TraySettingsTime");
+//    ui->Settings_Tray_ShutdownTime->setCurrentIndex(setting.value("ShutdownTime").toInt());
+//    ui->Settings_Tray_RebootTime->setCurrentIndex(setting.value("RebootTime").toInt());
+//    ui->Settings_Tray_SleepTime->setCurrentIndex(setting.value("SleepTime").toInt());
+//    ui->Settings_Tray_HibernateTime->setCurrentIndex(setting.value("HibernateTime").toInt());
+//    ui->Settings_Tray_LogoffTime->setCurrentIndex(setting.value("LogoffTime").toInt());
+//    ui->Settings_Tray_LockTime->setCurrentIndex(setting.value("LockTime").toInt());
+//    ui->Settings_Tray_MonitorTime->setCurrentIndex(setting.value("MonitorTime").toInt());
+//    setting.endGroup();
 
-    settings_changed = 0;
-    tray_changed = 0;
-    user_changed = 0;
+//    settings_changed = 0;
+//    tray_changed = 0;
+//    user_changed = 0;
 }
 
 void Settings::settingsSave(bool p, QString path)

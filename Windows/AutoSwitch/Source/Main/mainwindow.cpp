@@ -10,25 +10,25 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-//    ui->setupUi(this);
-//    ui->Tasks_Table->setColumnWidth(0, 200);
-//    ui->Tasks_Table->setColumnWidth(1, 100);
-//    ui->Tasks_Table->setColumnWidth(2, 100);
-//    ui->Tasks_Table->setColumnWidth(3, 100);
-//    ui->Tasks_Table->setColumnWidth(4, 100);
+    ui->setupUi(this);
+    ui->Tasks_Table->setColumnWidth(0, 200);
+    ui->Tasks_Table->setColumnWidth(1, 100);
+    ui->Tasks_Table->setColumnWidth(2, 100);
+    ui->Tasks_Table->setColumnWidth(3, 100);
+    ui->Tasks_Table->setColumnWidth(4, 100);
 
-//    qApp->setStyle("fusion");
-//    MainWindow::tray();
+    qApp->setStyle("fusion");
+    MainWindow::tray();
 
-//    QTimer *timer = new QTimer(this);
-//    connect(timer,SIGNAL(timeout()), this, SLOT(show_time()));
-//    timer->start(950);
+    QTimer *timer = new QTimer(this);
+    connect(timer,SIGNAL(timeout()), this, SLOT(show_time()));
+    timer->start(950);
 
-//    ui->Info_BuildDate_Date->setText(__DATE__);
-//    ui->Info_BuildDate_Time->setText(__TIME__);
-//    ui->About_Version->setText(ui->About_Version->text() + appVersion);
+    ui->Info_BuildDate_Date->setText(__DATE__);
+    ui->Info_BuildDate_Time->setText(__TIME__);
+    ui->About_Version->setText(ui->About_Version->text() + appVersion);
 
-//    if (isHibernateAvailable() == 0) ui->Main_Task_Hibernate->setEnabled(0);
+    if (isHibernateAvailable() == 0) ui->Main_Task_Hibernate->setEnabled(0);
 
 //    PasswordConfig *pc = PasswordConfig::getInstance();
 //    if (pc->getPasswordrules_run())
@@ -36,14 +36,14 @@ MainWindow::MainWindow(QWidget *parent) :
 //        if (authorize() == false) exit(10);
 //    }
 
-//    Autorun AR;
-//    AR.autorunLoad(1);
-//    AR.close();
+    Autorun AR;
+    AR.autorunLoad(1);
+    AR.close();
 
-//    isUserRegistered();
-//    ui->retranslateUi(this);
+    isUserRegistered();
+    ui->retranslateUi(this);
 
-//    setAlignedIcons();
+    setAlignedIcons();
 
 //    SocketCommunicator server(nullptr, this);
 //    server.StartServer();
@@ -85,8 +85,8 @@ void MainWindow::tray()
     trayIcon = trayIcon;
 
     Settings *s = Settings::getInstance();
-    s->settingsLoad();
-    s->close();
+//    s->settingsLoad();
+//    s->close();
     tasklist = ui->Tasks_Table;
     TraySubmenu tsm;
 
@@ -99,89 +99,89 @@ void MainWindow::tray()
 
     tsm.mainMenu = trayIconMenu;
 
-    if (s->getTraySettings_Shutdown())
-    {
-        tsm.actionSingle = ShutdownAction;
-        memcpy(MShutdown, tsm.action, sizeof(MShutdown));
-        tsm.actionText = tr("Wyłącz Komputer");
-        tsm.iconPath = ":/icons/Resources/Icons/shutdown.png";
-        tsm.mode = 'w';
-        tsm.subMenu = subMenu_Shutdown;
-        if (s->getTraySettings_Shutdown()) trayBuilder(tsm, 1);
-        else trayBuilder(tsm, 0);
-    }
+//    if (s->getTraySettings_Shutdown())
+//    {
+//        tsm.actionSingle = ShutdownAction;
+//        memcpy(MShutdown, tsm.action, sizeof(MShutdown));
+//        tsm.actionText = tr("Wyłącz Komputer");
+//        tsm.iconPath = ":/icons/Resources/Icons/shutdown.png";
+//        tsm.mode = 'w';
+//        tsm.subMenu = subMenu_Shutdown;
+//        if (s->getTraySettings_Shutdown()) trayBuilder(tsm, 1);
+//        else trayBuilder(tsm, 0);
+//    }
 
-    if (s->getTraySettings_Reboot())
-    {
-        tsm.actionSingle = RebootAction;
-        memcpy(MReboot, tsm.action, sizeof(MReboot));
-        tsm.actionText = tr("Uruchom ponownie Komputer");
-        tsm.iconPath = ":/icons/Resources/Icons/reboot.png";
-        tsm.mode = 'r';
-        tsm.subMenu = subMenu_Reboot;
-        if (s->getTraySettings_Reboot()) trayBuilder(tsm, 1);
-        else trayBuilder(tsm, 0);
-    }
+//    if (s->getTraySettings_Reboot())
+//    {
+//        tsm.actionSingle = RebootAction;
+//        memcpy(MReboot, tsm.action, sizeof(MReboot));
+//        tsm.actionText = tr("Uruchom ponownie Komputer");
+//        tsm.iconPath = ":/icons/Resources/Icons/reboot.png";
+//        tsm.mode = 'r';
+//        tsm.subMenu = subMenu_Reboot;
+//        if (s->getTraySettings_Reboot()) trayBuilder(tsm, 1);
+//        else trayBuilder(tsm, 0);
+//    }
 
-    if (s->getTraySettings_Sleep())
-    {
-        tsm.actionSingle = SleepAction;
-        memcpy(MSleep, tsm.action, sizeof(MSleep));
-        tsm.actionText = tr("Uśpij Komputer");
-        tsm.iconPath = ":/icons/Resources/Icons/hibernate.png";
-        tsm.mode = 'u';
-        tsm.subMenu = subMenu_Sleep;
-        if (s->getTraySettings_Sleep()) trayBuilder(tsm, 1);
-        else trayBuilder(tsm, 0);
-    }
+//    if (s->getTraySettings_Sleep())
+//    {
+//        tsm.actionSingle = SleepAction;
+//        memcpy(MSleep, tsm.action, sizeof(MSleep));
+//        tsm.actionText = tr("Uśpij Komputer");
+//        tsm.iconPath = ":/icons/Resources/Icons/hibernate.png";
+//        tsm.mode = 'u';
+//        tsm.subMenu = subMenu_Sleep;
+//        if (s->getTraySettings_Sleep()) trayBuilder(tsm, 1);
+//        else trayBuilder(tsm, 0);
+//    }
 
-    if (s->getTraySettings_Hibernate())
-    {
-        tsm.actionSingle = HibernateAction;
-        memcpy(MHibernate, tsm.action, sizeof(MHibernate));
-        tsm.actionText = tr("Hibernuj Komputer");
-        tsm.iconPath = ":/icons/Resources/Icons/hibernate.png";
-        tsm.mode = 'h';
-        tsm.subMenu = subMenu_Hibernate;
-        if (s->getTraySettings_Hibernate()) trayBuilder(tsm, 1);
-        else trayBuilder(tsm, 0);
-    }
+//    if (s->getTraySettings_Hibernate())
+//    {
+//        tsm.actionSingle = HibernateAction;
+//        memcpy(MHibernate, tsm.action, sizeof(MHibernate));
+//        tsm.actionText = tr("Hibernuj Komputer");
+//        tsm.iconPath = ":/icons/Resources/Icons/hibernate.png";
+//        tsm.mode = 'h';
+//        tsm.subMenu = subMenu_Hibernate;
+//        if (s->getTraySettings_Hibernate()) trayBuilder(tsm, 1);
+//        else trayBuilder(tsm, 0);
+//    }
 
-    if (s->getTraySettings_Logoff())
-    {
-        tsm.actionSingle = LogoffAction;
-        memcpy(MLogoff, tsm.action, sizeof(MLogoff));
-        tsm.actionText = tr("Wyloguj się");
-        tsm.iconPath = ":/icons/Resources/Icons/logout.png";
-        tsm.mode = 'l';
-        tsm.subMenu = subMenu_Logoff;
-        if (s->getTraySettings_Logoff()) trayBuilder(tsm, 1);
-        else trayBuilder(tsm, 0);
-    }
+//    if (s->getTraySettings_Logoff())
+//    {
+//        tsm.actionSingle = LogoffAction;
+//        memcpy(MLogoff, tsm.action, sizeof(MLogoff));
+//        tsm.actionText = tr("Wyloguj się");
+//        tsm.iconPath = ":/icons/Resources/Icons/logout.png";
+//        tsm.mode = 'l';
+//        tsm.subMenu = subMenu_Logoff;
+//        if (s->getTraySettings_Logoff()) trayBuilder(tsm, 1);
+//        else trayBuilder(tsm, 0);
+//    }
 
-    if (s->getTraySettings_Lock())
-    {
-        tsm.actionSingle = LockAction;
-        memcpy(MLock, tsm.action, sizeof(MLock));
-        tsm.actionText = tr("Zablokuj Komputer");
-        tsm.iconPath = ":/icons/Resources/Icons/lock.png";
-        tsm.mode = 'b';
-        tsm.subMenu = subMenu_Lock;
-        if (s->getTraySettings_Lock()) trayBuilder(tsm, 1);
-        else trayBuilder(tsm, 0);
-    }
+//    if (s->getTraySettings_Lock())
+//    {
+//        tsm.actionSingle = LockAction;
+//        memcpy(MLock, tsm.action, sizeof(MLock));
+//        tsm.actionText = tr("Zablokuj Komputer");
+//        tsm.iconPath = ":/icons/Resources/Icons/lock.png";
+//        tsm.mode = 'b';
+//        tsm.subMenu = subMenu_Lock;
+//        if (s->getTraySettings_Lock()) trayBuilder(tsm, 1);
+//        else trayBuilder(tsm, 0);
+//    }
 
-    if (s->getTraySettings_Monitor())
-    {
-        tsm.actionSingle = MonitoroffAction;
-        memcpy(MMonitoroff, tsm.action, sizeof(MMonitoroff));
-        tsm.actionText = tr("Wyłącz Monitor");
-        tsm.iconPath = ":/icons/Resources/Icons/monitor_off.png";
-        tsm.mode = 'm';
-        tsm.subMenu = subMenu_MonitorOff;
-        if (s->getTraySettings_Monitor()) trayBuilder(tsm, 1);
-        else trayBuilder(tsm, 0);
-    }
+//    if (s->getTraySettings_Monitor())
+//    {
+//        tsm.actionSingle = MonitoroffAction;
+//        memcpy(MMonitoroff, tsm.action, sizeof(MMonitoroff));
+//        tsm.actionText = tr("Wyłącz Monitor");
+//        tsm.iconPath = ":/icons/Resources/Icons/monitor_off.png";
+//        tsm.mode = 'm';
+//        tsm.subMenu = subMenu_MonitorOff;
+//        if (s->getTraySettings_Monitor()) trayBuilder(tsm, 1);
+//        else trayBuilder(tsm, 0);
+//    }
 
     trayIconMenu->addSeparator();
     WyjdzAction = new QAction(tr("Wyjdź z programu"), this);

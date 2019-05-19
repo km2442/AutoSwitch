@@ -18,7 +18,7 @@ class PasswordConfig : public QDialog
 
 public:
     void loadFromReg();
-    static PasswordConfig* getInstance() { return &passwordConfigInstance; }
+    static PasswordConfig *getInstance();
     bool saveToRegistry(QString pw, bool pwr_run, bool pwr_settings, bool pwr_autorun, bool pwr_show);
     explicit PasswordConfig(QWidget *parent = 0);
     ~PasswordConfig();
@@ -57,7 +57,6 @@ private slots:
 private:
     bool cleanPassConf();
     void comparePass();
-    static PasswordConfig passwordConfigInstance;
     Ui::PasswordConfig *ui;
 
     bool password_enable = 0;

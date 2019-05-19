@@ -3,7 +3,7 @@
 
 #include "Source/Main/functions.h"
 
-PasswordConfig PasswordConfig::passwordConfigInstance;
+Q_GLOBAL_STATIC(PasswordConfig, passwordConfigInstance);
 
 PasswordConfig::PasswordConfig(QWidget *parent) :
     QDialog(parent),
@@ -225,6 +225,12 @@ void PasswordConfig::loadFromReg()
     }
 
     pwSettings_changed = 0;
+}
+
+PasswordConfig *PasswordConfig::getInstance()
+{
+    //return passwordConfigInstance;
+    return nullptr;
 }
 
 bool PasswordConfig::saveToRegistry(QString pw, bool pwr_run, bool pwr_settings, bool pwr_autorun, bool pwr_show)
