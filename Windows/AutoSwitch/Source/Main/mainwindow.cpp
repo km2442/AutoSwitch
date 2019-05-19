@@ -30,11 +30,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     if (isHibernateAvailable() == 0) ui->Main_Task_Hibernate->setEnabled(0);
 
-//    PasswordConfig *pc = PasswordConfig::getInstance();
-//    if (pc->getPasswordrules_run())
-//    {
-//        if (authorize() == false) exit(10);
-//    }
+    PasswordConfig *pc = PasswordConfig::getInstance();
+    if (pc->getPasswordrules_run())
+    {
+        if (authorize() == false) exit(10);
+    }
 
     Autorun AR;
     AR.autorunLoad(1);
@@ -45,8 +45,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setAlignedIcons();
 
-//    SocketCommunicator server(nullptr, this);
-//    server.StartServer();
+    SocketCommunicator server(nullptr, this);
+    server.StartServer();
 }
 
 MainWindow::~MainWindow()

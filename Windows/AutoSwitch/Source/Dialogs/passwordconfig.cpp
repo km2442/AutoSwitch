@@ -229,8 +229,7 @@ void PasswordConfig::loadFromReg()
 
 PasswordConfig *PasswordConfig::getInstance()
 {
-    //return passwordConfigInstance;
-    return nullptr;
+    return passwordConfigInstance;
 }
 
 bool PasswordConfig::saveToRegistry(QString pw, bool pwr_run, bool pwr_settings, bool pwr_autorun, bool pwr_show)
