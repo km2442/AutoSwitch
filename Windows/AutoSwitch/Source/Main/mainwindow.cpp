@@ -3,6 +3,7 @@
 
 QSystemTrayIcon *trayIcon;
 QTableWidget *tasklist;
+SocketCommunicator *server;
 
 //MainWindow MainWindow::mainwindowInstance;
 
@@ -45,8 +46,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setAlignedIcons();
 
-    SocketCommunicator server(nullptr, this);
-    server.StartServer();
+    server = new SocketCommunicator(nullptr, this);
+    server->StartServer();
 }
 
 MainWindow::~MainWindow()
