@@ -85,8 +85,8 @@ void MainWindow::tray()
     trayIcon = trayIcon;
 
     Settings *s = Settings::getInstance();
-//    s->settingsLoad();
-//    s->close();
+    s->settingsLoad();
+    s->close();
     tasklist = ui->Tasks_Table;
     TraySubmenu tsm;
 

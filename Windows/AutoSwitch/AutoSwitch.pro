@@ -31,7 +31,8 @@ SOURCES += \
     Source/Main/functions.cpp \
     Source/Main/main.cpp \
     Source/Main/mainwindow.cpp \
-    Source/Main/settings.cpp
+    Source/Main/settings.cpp \
+    Source/Classes/databasepass.cpp
 
 HEADERS  += \
     Source/Classes/communicatorthread.h \

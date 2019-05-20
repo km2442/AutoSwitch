@@ -161,7 +161,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     //static MainWindow mainwindowInstance;
-    QSystemTrayIcon *trayIcon;
+    QSystemTrayIcon *trayIconn;
     void tray();
     void trayBuilder(TraySubmenu tsm, bool enableSubmenu);
     void MainWindow::closeEvent(QCloseEvent * event);
