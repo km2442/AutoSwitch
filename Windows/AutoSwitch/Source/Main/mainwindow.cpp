@@ -475,11 +475,6 @@ void MainWindow::showMainWindow()
     else this->showNormal();
 }
 
-void MainWindow::appendSocket(QString s)
-{
-    ui->SocketOutput->append(s);
-}
-
 void MainWindow::hideApp()
 {
     Settings *s = Settings::getInstance();

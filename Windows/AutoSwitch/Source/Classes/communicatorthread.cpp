@@ -33,7 +33,14 @@ void CommunicatorThread::readyRead()
 
     qDebug() << socketDescriptor << " Data in: " << Data;
 
-    socket->write(Data);
+    //socket->write(Data);
+
+    QJsonDocument jsonResponse = QJsonDocument::fromJson(Data);
+    QJsonObject jsonObject = jsonResponse.object();
+
+    JsonActionParser *jap = JsonActionParser::getInstance();
+    if(jsonObject.value("Exec").toString() == "AddTask") jap->parseNewAction(jsonObject);
+
 }
 
 void CommunicatorThread::disconnected()

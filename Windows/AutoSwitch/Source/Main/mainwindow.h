@@ -47,7 +47,6 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     //static MainWindow* getInstance() { return &mainwindowInstance; }
     void showMainWindow();
-    void appendSocket(QString s);
     ~MainWindow();
 
 private slots:

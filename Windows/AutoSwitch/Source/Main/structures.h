@@ -1,5 +1,4 @@
-#ifndef STRUCTURES_H
-#define STRUCTURES_H
+#pragma once
 #include <QDateTime>
 
 struct TaskTime
@@ -32,5 +31,3 @@ struct Task
 //    bool force = 0;
 //    short taskNumber = 0;
 //};
-
-#endif // STRUCTURES_H

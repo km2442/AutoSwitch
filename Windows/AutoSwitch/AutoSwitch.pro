@@ -17,6 +17,7 @@ SOURCES += \
     Source/Classes/communicatorthread.cpp \
     Source/Classes/database.cpp \
     Source/Classes/databasepass.cpp \
+    Source/Classes/jsonactionparser.cpp \
     Source/Classes/mybutton.cpp \
     Source/Classes/socketcommunicator.cpp \
     Source/Dialogs/firstrun.cpp \
@@ -37,6 +38,7 @@ SOURCES += \
 HEADERS  += \
     Source/Classes/communicatorthread.h \
     Source/Classes/database.h \
+    Source/Classes/jsonactionparser.h \
     Source/Classes/mybutton.h \
     Source/Classes/socketcommunicator.h \
     Source/Dialogs/firstrun.h \

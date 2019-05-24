@@ -3,8 +3,10 @@
 
 #include <QThread>
 #include <QTcpSocket>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include "Source/Main/mainwindow.h"
-
+#include "Source/Classes/jsonactionparser.h"
 
 class CommunicatorThread : public QThread
 {
