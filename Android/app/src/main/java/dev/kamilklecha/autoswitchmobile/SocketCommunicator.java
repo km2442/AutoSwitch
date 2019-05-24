@@ -5,12 +5,16 @@ import android.os.NetworkOnMainThreadException;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.sql.Time;
+import java.util.Date;
 
 public class SocketCommunicator {
 
@@ -22,6 +26,17 @@ public class SocketCommunicator {
     private OutputStream out;
     private PrintWriter output;
     final Handler handler = new Handler();
+
+    class Packet {
+        public
+        String Exec = "AddTask";
+        String Action = "MonitorOff";
+        String TimeMode = "Now";
+        Integer seconds = 0;
+        Time time = new Time(10,0,0);
+        Date date = new Date(2019,05,22,22,00,00);
+        Boolean force = false;
+    }
 
     public SocketCommunicator(TextView textView, final String SERVER_IP, final int SERVERPORT) {
         tv = textView;
@@ -49,7 +64,10 @@ public class SocketCommunicator {
             @Override
             public void run() {
                 try {
-                    output.println(msg);
+                    Packet p = new Packet();
+                    Gson gson = new Gson();
+                    String json = gson.toJson(p);
+                    output.println(json);
                     output.flush();
                 } catch (Exception e) {
                     e.printStackTrace();
