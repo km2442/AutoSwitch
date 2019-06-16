@@ -1,5 +1,6 @@
 package dev.kamilklecha.autoswitchmobile;
 
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.NetworkOnMainThreadException;
 import android.util.Log;
@@ -12,11 +13,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.net.Socket;
-import java.sql.Time;
-import java.util.Date;
 
-public class SocketCommunicator {
+public class SocketCommunicator implements Serializable {
 
     private static final String TAG = "SocketCommunicator";
     Socket s;
@@ -27,18 +27,7 @@ public class SocketCommunicator {
     private PrintWriter output;
     final Handler handler = new Handler();
 
-    class Packet {
-        public
-        String Exec = "AddTask";
-        String Action = "MonitorOff";
-        String TimeMode = "Now";
-        Integer seconds = 0;
-        Time time = new Time(10,0,0);
-        Date date = new Date(2019,05,22,22,00,00);
-        Boolean force = false;
-    }
-
-    public SocketCommunicator(TextView textView, final String SERVER_IP, final int SERVERPORT) {
+    public SocketCommunicator(TextView textView, final String SERVER_IP, final int SERVERPORT, final ConnectWait cw) {
         tv = textView;
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -49,6 +38,29 @@ public class SocketCommunicator {
                     output = new PrintWriter(out);
 
                     startReceiver();
+
+                    AsyncTask.execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            int i = 0;
+                            if(s.isConnected()) {
+                                cw.connected();
+                            } else {
+                                if(i == 20) {
+                                    cw.finish();
+                                }
+                                i++;
+                                try {
+                                    i++;
+                                    Thread.sleep(250);
+                                }
+                                catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    });
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (Exception e) {

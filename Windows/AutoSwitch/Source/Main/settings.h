@@ -164,7 +164,7 @@ private:
     int current_theme = 0;
     int language = 0;
 
-    bool dev_opt;
+    bool dev_opt = 0;
     bool plzLog = 1;
     bool settings_changed = 0;
     bool tray_changed = 0;

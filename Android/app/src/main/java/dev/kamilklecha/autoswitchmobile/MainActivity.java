@@ -10,11 +10,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity
 
     Button btn;
     private EditText mEditTextSendMessage;
-    private SocketCommunicator sc;
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
         btn = findViewById(R.id.Main_Activitysettings);
         View.OnClickListener cl = new View.OnClickListener() {
             @Override
@@ -56,34 +57,61 @@ public class MainActivity extends AppCompatActivity
         };
         btn.setOnClickListener(cl);
 
-        final Button buttonSend = (Button) findViewById(R.id.btn_send);
         final Button buttonSetup = (Button) findViewById(R.id.btn_setup);
-        final EditText IPGetter = (EditText) findViewById(R.id.Main_IP);
         final EditText PortGetter = (EditText) findViewById(R.id.Main_Port);
 
         mEditTextSendMessage = (EditText) findViewById(R.id.edt_send_message);
 
-        buttonSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sc.sendMessage(mEditTextSendMessage.getText().toString());
-            }
-        });
-
         buttonSetup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(IPGetter.getText().toString().length()!=0 && PortGetter.getText().toString().length() != 0) {
-                    sc = new SocketCommunicator((TextView) findViewById(R.id.tv_reply_from_server),
-                            IPGetter.getText().toString(),
-                            Integer.parseInt(PortGetter.getText().toString()));
-                    buttonSend.setEnabled(true);
+                if(get_IP().length() > 0 && PortGetter.getText().toString().length() != 0) {
+                    Intent i = new Intent(MainActivity.this, ConnectWait.class);
+                    i.putExtra("IP", get_IP());
+                    i.putExtra("Port", PortGetter.getText().toString());
+                    startActivity(i);
                 }
                 else {
-                    Toast.makeText(MainActivity.this, "Fill IP and Port!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "IP and Port must be filled correctly!", Toast.LENGTH_LONG).show();
                 }
             }
         });
+    }
+
+    public String get_IP() {
+        final EditText IP1 = (EditText) findViewById(R.id.main_IP_1);
+        final EditText IP2 = (EditText) findViewById(R.id.main_IP_2);
+        final EditText IP3 = (EditText) findViewById(R.id.main_IP_3);
+        final EditText IP4 = (EditText) findViewById(R.id.main_IP_4);
+
+        String s1 = IP1.getText().toString();
+        String s2 = IP2.getText().toString();
+        String s3 = IP3.getText().toString();
+        String s4 = IP4.getText().toString();
+
+        int i1, i2, i3, i4;
+
+        try {
+            i1 = Integer.parseInt(s1);
+            i2 = Integer.parseInt(s2);
+            i3 = Integer.parseInt(s3);
+            i4 = Integer.parseInt(s4);
+        }
+        catch(Exception e) {
+            Toast.makeText(MainActivity.this, "IP is not correct!", Toast.LENGTH_LONG).show();
+            Log.d(TAG, "get_IP: Error " + e.getMessage());
+            return "";
+        }
+
+        if(i1 >= 0 && i1 < 256 && i2 >= 0 && i2 < 256 && i3 >= 0 && i3 < 256 && i4 >= 0 && i4 < 256) {
+
+            String tmp = s1 + '.' + s2 + '.' + s3 + '.' + s4;
+            return tmp;
+        }
+        else {
+            Toast.makeText(MainActivity.this, "Incorrect IP!", Toast.LENGTH_LONG).show();
+            return "";
+        }
     }
 
     @Override
