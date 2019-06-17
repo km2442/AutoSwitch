@@ -81,7 +81,7 @@ public class SocketCommunicator implements Serializable {
     }
 
     public void startReceiver() {
-        Thread thread = new Thread(new Runnable() {
+        final Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 boolean exception = false;
@@ -91,6 +91,8 @@ public class SocketCommunicator implements Serializable {
                     e.printStackTrace();
                 }
                 while (!exception) {
+                    if(socket.isClosed()) break;
+
                     try {
                         BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                         final String st = input.readLine();

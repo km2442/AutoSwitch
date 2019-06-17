@@ -8,21 +8,34 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <EditText
-        android:id="@+id/main_IP_4"
-        android:layout_width="75dp"
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="IP"
+        app:layout_constraintBaseline_toBaselineOf="@id/main_IP_1"
+        app:layout_constraintEnd_toStartOf="@+id/main_IP_1"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/main_IP_1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:inputType="number"
         android:maxLength="3"
         android:phoneNumber="false"
         android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/main_IP_3" />
+        app:layout_constraintEnd_toStartOf="@+id/textView4"
+        app:layout_constraintStart_toEndOf="@id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -30,12 +43,13 @@
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/main_IP_3"
-        app:layout_constraintEnd_toStartOf="@+id/main_IP_4" />
+        app:layout_constraintBottom_toBottomOf="@+id/main_IP_1"
+        app:layout_constraintEnd_toStartOf="@+id/main_IP_2"
+        app:layout_constraintStart_toEndOf="@id/main_IP_1" />
 
     <EditText
-        android:id="@+id/main_IP_3"
-        android:layout_width="75dp"
+        android:id="@+id/main_IP_2"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:ems="10"
@@ -43,8 +57,9 @@
         android:maxLength="3"
         android:phoneNumber="false"
         android:textAlignment="center"
-        app:layout_constraintEnd_toStartOf="@+id/textView6"
-        app:layout_constraintTop_toTopOf="@+id/main_IP_2" />
+        app:layout_constraintEnd_toStartOf="@+id/textView5"
+        app:layout_constraintStart_toEndOf="@id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/main_IP_1" />
 
     <TextView
         android:id="@+id/textView5"
@@ -56,11 +71,12 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/main_IP_2"
-        app:layout_constraintEnd_toStartOf="@+id/main_IP_3" />
+        app:layout_constraintEnd_toStartOf="@+id/main_IP_3"
+        app:layout_constraintStart_toEndOf="@id/main_IP_2" />
 
     <EditText
-        android:id="@+id/main_IP_2"
-        android:layout_width="75dp"
+        android:id="@+id/main_IP_3"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:ems="10"
@@ -68,22 +84,46 @@
         android:maxLength="3"
         android:phoneNumber="false"
         android:textAlignment="center"
-        app:layout_constraintEnd_toStartOf="@+id/textView5"
-        app:layout_constraintTop_toTopOf="@+id/main_IP_1" />
+        app:layout_constraintEnd_toStartOf="@+id/textView6"
+        app:layout_constraintStart_toEndOf="@id/textView5"
+        app:layout_constraintTop_toTopOf="@+id/main_IP_2" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="."
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/main_IP_3"
+        app:layout_constraintEnd_toStartOf="@+id/main_IP_4"
+        app:layout_constraintStart_toEndOf="@id/main_IP_3" />
 
     <EditText
-        android:id="@+id/main_IP_1"
-        android:layout_width="75dp"
+        android:id="@+id/main_IP_4"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:inputType="number"
         android:maxLength="3"
         android:phoneNumber="false"
         android:textAlignment="center"
-        app:layout_constraintEnd_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintEnd_toStartOf="@+id/main_IP_Clear"
+        app:layout_constraintStart_toEndOf="@id/textView6"
+        app:layout_constraintTop_toTopOf="@+id/main_IP_3" />
+
+    <Button
+        android:id="@+id/main_IP_Clear"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="X"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/main_IP_4"
+        app:layout_constraintTop_toTopOf="@+id/main_IP_4" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -137,26 +177,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="IP"
-        app:layout_constraintBaseline_toBaselineOf="@id/main_IP_1"
-        app:layout_constraintEnd_toStartOf="@+id/main_IP_1"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="."
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/main_IP_1"
-        app:layout_constraintEnd_toStartOf="@+id/main_IP_2" />
 </android.support.constraint.ConstraintLayout>

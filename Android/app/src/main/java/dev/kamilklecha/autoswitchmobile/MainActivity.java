@@ -57,6 +57,24 @@ public class MainActivity extends AppCompatActivity
         };
         btn.setOnClickListener(cl);
 
+        Button clear = (Button) findViewById(R.id.main_IP_Clear);
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText IP1 = (EditText) findViewById(R.id.main_IP_1);
+                EditText IP2 = (EditText) findViewById(R.id.main_IP_2);
+                EditText IP3 = (EditText) findViewById(R.id.main_IP_3);
+                EditText IP4 = (EditText) findViewById(R.id.main_IP_4);
+
+                IP1.setText("");
+                IP2.setText("");
+                IP3.setText("");
+                IP4.setText("");
+
+                IP1.requestFocus();
+            }
+        });
+
         final Button buttonSetup = (Button) findViewById(R.id.btn_setup);
 
         buttonSetup.setOnClickListener(new View.OnClickListener() {
