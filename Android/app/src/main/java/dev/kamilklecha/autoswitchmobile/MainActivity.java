@@ -58,17 +58,14 @@ public class MainActivity extends AppCompatActivity
         btn.setOnClickListener(cl);
 
         final Button buttonSetup = (Button) findViewById(R.id.btn_setup);
-        final EditText PortGetter = (EditText) findViewById(R.id.Main_Port);
-
-        mEditTextSendMessage = (EditText) findViewById(R.id.edt_send_message);
 
         buttonSetup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(get_IP().length() > 0 && PortGetter.getText().toString().length() != 0) {
+                if(get_IP().length() > 0) {
                     Intent i = new Intent(MainActivity.this, ConnectWait.class);
                     i.putExtra("IP", get_IP());
-                    i.putExtra("Port", PortGetter.getText().toString());
+                    i.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                     startActivity(i);
                 }
                 else {

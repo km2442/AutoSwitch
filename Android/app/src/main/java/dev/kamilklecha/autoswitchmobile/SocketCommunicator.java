@@ -4,9 +4,6 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.NetworkOnMainThreadException;
 import android.util.Log;
-import android.widget.TextView;
-
-import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,22 +16,19 @@ import java.net.Socket;
 public class SocketCommunicator implements Serializable {
 
     private static final String TAG = "SocketCommunicator";
-    Socket s;
-
-    private TextView tv;
+    public Socket socket;
 
     private OutputStream out;
     private PrintWriter output;
     final Handler handler = new Handler();
 
-    public SocketCommunicator(TextView textView, final String SERVER_IP, final int SERVERPORT, final ConnectWait cw) {
-        tv = textView;
+    public SocketCommunicator(final String SERVER_IP, final ConnectWait cw) {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    s = new Socket(SERVER_IP, SERVERPORT);
-                    out = s.getOutputStream();
+                    socket = new Socket(SERVER_IP, 1234);
+                    out = socket.getOutputStream();
                     output = new PrintWriter(out);
 
                     startReceiver();
@@ -43,7 +37,7 @@ public class SocketCommunicator implements Serializable {
                         @Override
                         public void run() {
                             int i = 0;
-                            if(s.isConnected()) {
+                            if(socket.isConnected()) {
                                 cw.connected();
                             } else {
                                 if(i == 20) {
@@ -76,10 +70,7 @@ public class SocketCommunicator implements Serializable {
             @Override
             public void run() {
                 try {
-                    Packet p = new Packet();
-                    Gson gson = new Gson();
-                    String json = gson.toJson(p);
-                    output.println(json);
+                    output.println(msg);
                     output.flush();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -101,15 +92,14 @@ public class SocketCommunicator implements Serializable {
                 }
                 while (!exception) {
                     try {
-                        BufferedReader input = new BufferedReader(new InputStreamReader(s.getInputStream()));
+                        BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                         final String st = input.readLine();
 
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-
-                                if (st.trim().length() != 0)
-                                    tv.setText("From Server: " + st);
+//                                if (st.trim().length() != 0)
+//                                    tv.setText("From Server: " + st);
                             }
                         });
                     } catch (IOException e) {

@@ -8,9 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class ConnectWait extends AppCompatActivity {
-
-    String IP;
-    String Port;
+    String IP, Port = "1234", addr;
     SocketCommunicator sc;
 
     @Override
@@ -19,8 +17,8 @@ public class ConnectWait extends AppCompatActivity {
         setContentView(R.layout.activity_connect_wait);
         TextView tw = (TextView) findViewById(R.id.connectWait_IP);
         IP = getIntent().getExtras().getString("IP");
-        Port = getIntent().getExtras().getString("Port");
-        tw.setText(IP + ':' + Port);
+        addr = (IP + ':' + Port);
+        tw.setText(addr);
 
         connectToPC(IP, Port);
 
@@ -35,20 +33,17 @@ public class ConnectWait extends AppCompatActivity {
 
     private void connectToPC(String IP, String Port)
     {
-        sc = new SocketCommunicator((TextView) findViewById(R.id.tv_reply_from_server), IP, Integer.parseInt(Port), this);
+        Hub.sc = new SocketCommunicator(IP, this);
     }
 
     public void connected()
     {
         Intent i = new Intent(ConnectWait.this, CommunicatorUI.class);
-        i.putExtra("IP", IP);
-        i.putExtra("Port", Port);
-        //i.putExtra("Socket", sc);
+        i.putExtra("Addr", addr);
         startActivity(i);
-        //ConnectWait.this.finish();
     }
 
     public void finish() {
-        ConnectWait.this.finish();
+        finish();
     }
 }
