@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="DropdownActionsList">
+        <item>Shutdown PC</item>
+        <item>Reboot PC</item>
+        <item>Hibernate PC</item>
+        <item>Sleep PC</item>
+        <item>Logout User</item>
+        <item>Lock PC</item>
+        <item>Turn Monitor Off</item>
+    </string-array>
+
+    <string-array name="QuantityList">
+        <item>1</item>
+        <item>2</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>30</item>
+        <item>60</item>
+        <item>90</item>
+        <item>120</item>
+        <item>150</item>
+        <item>180</item>
+    </string-array>
+
+    <string-array name="QuantityListHours">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>12</item>
+        <item>15</item>
+        <item>18</item>
+        <item>24</item>
+        <item>36</item>
+        <item>48</item>
+    </string-array>
+
+    <string-array name="QuantityNames">
+        <item>seconds</item>
+        <item>minutes</item>
+        <item>hours</item>
+        <item>days</item>
+        <item>months</item>
+        <item>years</item>
+    </string-array>
+</resources>

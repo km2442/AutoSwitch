@@ -1,5 +1,6 @@
 package dev.kamilklecha.autoswitchmobile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -25,6 +26,8 @@ public class CommunicatorUI extends AppCompatActivity implements Serializable {
         TextView tv = (TextView) findViewById(R.id.commUI_Addr);
         tv.setText(addr);
 
+        Button btnCustom = (Button) findViewById(R.id.commUI_CustomAction);
+
         Button btnShutdown = (Button) findViewById(R.id.commUI_Shutdown);
         Button btnReboot = (Button) findViewById(R.id.commUI_Reboot);
         Button btnSleep = (Button) findViewById(R.id.commUI_Sleep);
@@ -34,6 +37,14 @@ public class CommunicatorUI extends AppCompatActivity implements Serializable {
         Button btnMonitorOff = (Button) findViewById(R.id.commUI_MonitorOff);
         Button btnSettings = (Button) findViewById(R.id.commUI_Settings);
         Button btnDisconnect = (Button) findViewById(R.id.commUI_Disconnect);
+
+        btnCustom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(CommunicatorUI.this, AddCustomTask.class);
+                startActivity(i);
+            }
+        });
 
         btnShutdown.setOnClickListener(new View.OnClickListener() {
             @Override
