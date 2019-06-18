@@ -78,7 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         android:text="When?"
         android:textAlignment="center"
@@ -98,7 +98,7 @@
 
 
         <RadioButton
-            android:id="@+id/radioButton9"
+            android:id="@+id/addCustom_MainRadio_CetrainTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -107,7 +107,7 @@
             android:textStyle="bold" />
 
         <RadioButton
-            android:id="@+id/radioButton5"
+            android:id="@+id/addCustom_MainRadio_CertainTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Certain time"
@@ -115,7 +115,7 @@
             android:textStyle="bold" />
 
         <RadioButton
-            android:id="@+id/radioButton6"
+            android:id="@+id/addCustom_MainRadio_DateTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Date and time"
@@ -136,7 +136,7 @@
         app:layout_constraintTop_toBottomOf="@+id/addCustom_RadioGroupMain">
 
         <RadioGroup
-            android:id="@+id/radioGroup2"
+            android:id="@+id/addCustom_LCT_RadioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -146,28 +146,28 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <RadioButton
-                android:id="@+id/radioButton10"
+                android:id="@+id/addCustom_LCT_RG_AfterSeconds"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="After" />
 
             <RadioButton
-                android:id="@+id/radioButton11"
+                android:id="@+id/addCustom_LCT_RG_AfterMinutes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="After" />
 
             <RadioButton
-                android:id="@+id/radioButton12"
+                android:id="@+id/addCustom_LCT_RG_AfterHours"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="After" />
 
             <RadioButton
-                android:id="@+id/radioButton13"
+                android:id="@+id/addCustom_LCT_RG_Custom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -179,18 +179,18 @@
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/radioGroup2"
+            app:layout_constraintBottom_toBottomOf="@+id/addCustom_LCT_RadioGroup"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/radioGroup2"
-            app:layout_constraintTop_toTopOf="@+id/radioGroup2">
+            app:layout_constraintStart_toEndOf="@+id/addCustom_LCT_RadioGroup"
+            app:layout_constraintTop_toTopOf="@+id/addCustom_LCT_RadioGroup">
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/addCustom_LCT_SecondsSpinner"
                 android:layout_width="160dp"
                 android:layout_height="0dp"
                 android:entries="@array/QuantityList"
                 android:spinnerMode="dialog"
-                app:layout_constraintBottom_toTopOf="@id/spinner2"
+                app:layout_constraintBottom_toTopOf="@id/addCustom_LCT_MinutesSpinner"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -202,21 +202,21 @@
                 android:layout_marginEnd="8dp"
                 android:text="seconds"
                 android:textAlignment="center"
-                app:layout_constraintBottom_toBottomOf="@+id/spinner"
+                app:layout_constraintBottom_toBottomOf="@+id/addCustom_LCT_SecondsSpinner"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/spinner"
-                app:layout_constraintTop_toTopOf="@+id/spinner" />
+                app:layout_constraintStart_toEndOf="@+id/addCustom_LCT_SecondsSpinner"
+                app:layout_constraintTop_toTopOf="@+id/addCustom_LCT_SecondsSpinner" />
 
             <Spinner
-                android:id="@+id/spinner2"
+                android:id="@+id/addCustom_LCT_MinutesSpinner"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:entries="@array/QuantityList"
                 android:spinnerMode="dialog"
-                app:layout_constraintBottom_toTopOf="@id/spinner3"
-                app:layout_constraintEnd_toEndOf="@+id/spinner"
+                app:layout_constraintBottom_toTopOf="@id/addCustom_LCT_HoursSpinner"
+                app:layout_constraintEnd_toEndOf="@+id/addCustom_LCT_SecondsSpinner"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner" />
+                app:layout_constraintTop_toBottomOf="@+id/addCustom_LCT_SecondsSpinner" />
 
             <TextView
                 android:id="@+id/textView13"
@@ -224,20 +224,20 @@
                 android:layout_height="wrap_content"
                 android:text="minutes"
                 android:textAlignment="center"
-                app:layout_constraintBottom_toTopOf="@+id/spinner3"
+                app:layout_constraintBottom_toTopOf="@+id/addCustom_LCT_HoursSpinner"
                 app:layout_constraintStart_toStartOf="@+id/textView12"
-                app:layout_constraintTop_toTopOf="@+id/spinner2" />
+                app:layout_constraintTop_toTopOf="@+id/addCustom_LCT_MinutesSpinner" />
 
             <Spinner
-                android:id="@+id/spinner3"
+                android:id="@+id/addCustom_LCT_HoursSpinner"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:entries="@array/QuantityListHours"
                 android:spinnerMode="dialog"
-                app:layout_constraintBottom_toTopOf="@id/editText2"
-                app:layout_constraintEnd_toEndOf="@+id/spinner2"
+                app:layout_constraintBottom_toTopOf="@id/addCustom_LCT_CustomEditText"
+                app:layout_constraintEnd_toEndOf="@+id/addCustom_LCT_MinutesSpinner"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+                app:layout_constraintTop_toBottomOf="@+id/addCustom_LCT_MinutesSpinner" />
 
             <TextView
                 android:id="@+id/textView14"
@@ -247,12 +247,12 @@
                 android:layout_marginBottom="8dp"
                 android:text="hours"
                 android:textAlignment="center"
-                app:layout_constraintBottom_toTopOf="@+id/editText2"
+                app:layout_constraintBottom_toTopOf="@+id/addCustom_LCT_CustomEditText"
                 app:layout_constraintStart_toStartOf="@+id/textView13"
-                app:layout_constraintTop_toTopOf="@+id/spinner3" />
+                app:layout_constraintTop_toTopOf="@+id/addCustom_LCT_HoursSpinner" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/addCustom_LCT_CustomEditText"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:ems="10"
@@ -260,22 +260,22 @@
                 android:textAlignment="textEnd"
                 android:textSize="11sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/spinner3"
+                app:layout_constraintEnd_toEndOf="@+id/addCustom_LCT_HoursSpinner"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner3" />
+                app:layout_constraintTop_toBottomOf="@+id/addCustom_LCT_HoursSpinner" />
 
             <Spinner
-                android:id="@+id/spinner4"
+                android:id="@+id/addCustom_LCT_CustomSpinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="4dp"
                 android:entries="@array/QuantityNames"
                 android:spinnerMode="dialog"
-                app:layout_constraintBottom_toBottomOf="@+id/editText2"
+                app:layout_constraintBottom_toBottomOf="@+id/addCustom_LCT_CustomEditText"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/editText2"
-                app:layout_constraintTop_toTopOf="@+id/editText2" />
+                app:layout_constraintStart_toEndOf="@+id/addCustom_LCT_CustomEditText"
+                app:layout_constraintTop_toTopOf="@+id/addCustom_LCT_CustomEditText" />
         </android.support.constraint.ConstraintLayout>
     </android.support.constraint.ConstraintLayout>
 
@@ -299,23 +299,23 @@
             android:layout_marginEnd="8dp"
             android:text="At certain time:"
             android:textAlignment="center"
-            app:layout_constraintEnd_toStartOf="@+id/textView16"
+            app:layout_constraintEnd_toStartOf="@+id/addCustom_LT_SettedTime"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView16" />
+            app:layout_constraintTop_toTopOf="@+id/addCustom_LT_SettedTime" />
 
         <TextView
-            android:id="@+id/textView16"
+            android:id="@+id/addCustom_LT_SettedTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="@+id/button3"
-            app:layout_constraintEnd_toStartOf="@+id/button3"
+            app:layout_constraintBottom_toBottomOf="@+id/addCustom_LT_Update"
+            app:layout_constraintEnd_toStartOf="@+id/addCustom_LT_Update"
             app:layout_constraintStart_toEndOf="@id/textView15"
-            app:layout_constraintTop_toTopOf="@+id/button3" />
+            app:layout_constraintTop_toTopOf="@+id/addCustom_LT_Update" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/addCustom_LT_Update"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -348,23 +348,23 @@
             android:layout_marginEnd="8dp"
             android:text="At certain date ant time:"
             android:textAlignment="center"
-            app:layout_constraintEnd_toStartOf="@+id/textView18"
+            app:layout_constraintEnd_toStartOf="@+id/addCustom_LDT_SettedDateTime"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView18" />
+            app:layout_constraintTop_toTopOf="@+id/addCustom_LDT_SettedDateTime" />
 
         <TextView
-            android:id="@+id/textView18"
+            android:id="@+id/addCustom_LDT_SettedDateTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/button4"
-            app:layout_constraintEnd_toStartOf="@+id/button4"
+            app:layout_constraintBottom_toBottomOf="@+id/addCustom_LDT_Update"
+            app:layout_constraintEnd_toStartOf="@+id/addCustom_LDT_Update"
             app:layout_constraintStart_toEndOf="@id/textView17"
-            app:layout_constraintTop_toTopOf="@+id/button4" />
+            app:layout_constraintTop_toTopOf="@+id/addCustom_LDT_Update" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/addCustom_LDT_Update"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
