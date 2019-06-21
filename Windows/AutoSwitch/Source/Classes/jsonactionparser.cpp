@@ -10,7 +10,7 @@ JsonActionParser::JsonActionParser()
 bool JsonActionParser::parseNewAction(QJsonObject jsonObject)
 {
     Task task;
-    if(jsonObject.value("Action").toString() == "Shutdown") task.mode = 's';
+    if(jsonObject.value("Action").toString() == "Shutdown") task.mode = 'w';
     else if(jsonObject.value("Action").toString() == "Reboot") task.mode = 'r';
     else if(jsonObject.value("Action").toString() == "Sleep") task.mode = 'u';
     else if(jsonObject.value("Action").toString() == "Hibernate") task.mode = 'h';

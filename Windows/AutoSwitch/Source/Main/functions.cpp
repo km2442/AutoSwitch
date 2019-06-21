@@ -88,7 +88,7 @@ struct TaskTime countTime(unsigned long long quantity, char unit, struct TaskTim
     else if (unit == 'm') temp = quantity * 60;
     else temp = quantity;
 
-    time.dt = time.dt.addSecs(quantity);
+    time.dt = time.dt.addSecs(temp);
 
     return time;
 }

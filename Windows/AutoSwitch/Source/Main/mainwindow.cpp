@@ -584,12 +584,26 @@ void MainWindow::on_Main_Actions_Help_clicked()
 //Page_When
 void MainWindow::resetWhenPage()
 {
-    ui->When_Mode_SecondsRB->setChecked(0);
-    ui->When_Mode_MinutesRB->setChecked(0);
-    ui->When_Mode_HoursRB->setChecked(0);
-    ui->When_Mode_AtHourRB->setChecked(0);
-    ui->When_Mode_CustomRB->setChecked(0);
-    ui->When_Mode_AtDateRB->setChecked(0);
+    ui->When_Mode_SecondsRB->setAutoExclusive(false);
+    ui->When_Mode_MinutesRB->setAutoExclusive(false);
+    ui->When_Mode_HoursRB->setAutoExclusive(false);
+    ui->When_Mode_AtHourRB->setAutoExclusive(false);
+    ui->When_Mode_CustomRB->setAutoExclusive(false);
+    ui->When_Mode_AtDateRB->setAutoExclusive(false);
+
+    ui->When_Mode_SecondsRB->setChecked(false);
+    ui->When_Mode_MinutesRB->setChecked(false);
+    ui->When_Mode_HoursRB->setChecked(false);
+    ui->When_Mode_AtHourRB->setChecked(false);
+    ui->When_Mode_CustomRB->setChecked(false);
+    ui->When_Mode_AtDateRB->setChecked(false);
+
+    ui->When_Mode_SecondsRB->setAutoExclusive(true);
+    ui->When_Mode_MinutesRB->setAutoExclusive(true);
+    ui->When_Mode_HoursRB->setAutoExclusive(true);
+    ui->When_Mode_AtHourRB->setAutoExclusive(true);
+    ui->When_Mode_CustomRB->setAutoExclusive(true);
+    ui->When_Mode_AtDateRB->setAutoExclusive(true);
 
     ui->When_Mode_Seconds_Choose->setCurrentIndex(0);
     ui->When_Mode_Minutes_Choose->setCurrentIndex(0);
@@ -598,8 +612,8 @@ void MainWindow::resetWhenPage()
     ui->When_Mode_Custom_Quantity->setText("");
     whenSyncTime();
 
-    ui->When_ForceCB->setChecked(0);
-    ui->When_AddTask->setEnabled(0);
+    ui->When_ForceCB->setChecked(false);
+    ui->When_AddTask->setEnabled(false);
 }
 
 void MainWindow::whenSyncTime()
@@ -729,7 +743,10 @@ void MainWindow::on_When_AddTask_clicked()
         }
         else task.time.dt.setDate(dt.date());
 
-        task.time.dt.setTime(dt.time());
+        QTime t;
+        t.setHMS(hours, minutes, seconds);
+
+        task.time.dt.setTime(t);
         preAutomat(task);
     }
         break;
