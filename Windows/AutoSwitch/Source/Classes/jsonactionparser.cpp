@@ -32,13 +32,41 @@ bool JsonActionParser::parseNewAction(QJsonObject jsonObject)
         case 'm': monitorOff(); break;
         default: return false;
         }
-        return true;
     }
-    else if(jsonObject.value("TimeMode").toString() == "Seconds")
+    else if(jsonObject.value("TimeMode").toString() == "Postponed")
     {
+        if(jsonObject.contains("dt"))
+        {
+            QJsonObject dtObj = jsonObject.value("dt").toObject();
+            QTime t;
+            t.setHMS(dtObj.value("hourOfDay").toInt(), dtObj.value("minute").toInt(), 0);
+            task.time.dt.setTime(t);
 
+            if(dtObj.value("year").toInt() != 1900)
+            {
+                QDate d;
+                d.setDate(dtObj.value("year").toInt(), dtObj.value("month").toInt() + 1, dtObj.value("dayOfMonth").toInt());
+                task.time.dt.setDate(d);
+            }
+            else
+            {
+                QDateTime dt = QDateTime::currentDateTime();
+                if(dtObj.value("hourOfDay").toInt() <= dt.time().hour() && dtObj.value("minute").toInt() <= dt.time().minute() && 0 < dt.time().second())
+                {
+                    task.time = countDate('d', 1, task.time);
+                }
+                else task.time.dt.setDate(dt.date());
+            }
+
+            qDebug() << task.time.dt.date() << task.time.dt.time();
+            preAutomat(task);
+        }
+        else if(jsonObject.contains("seconds"))
+        {
+            task.time = countTime(jsonObject.value("seconds").toInt(), 's', task.time);
+            preAutomat(task);
+        }
     }
     else return false;
-
     return true;
 }

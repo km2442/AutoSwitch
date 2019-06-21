@@ -1,4 +1,5 @@
 #pragma once
+#include <QDebug>
 #include "QJsonDocument"
 #include "QJsonObject"
 
