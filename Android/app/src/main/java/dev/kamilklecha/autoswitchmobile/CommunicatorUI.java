@@ -21,6 +21,8 @@ public class CommunicatorUI extends AppCompatActivity implements Serializable {
         super.onCreate(savedInstanceState);
         addr = getIntent().getExtras().getString("Addr");
 
+        Hub.cui = this;
+
         setContentView(R.layout.activity_communicator_ui);
 
         TextView tv = (TextView) findViewById(R.id.commUI_Addr);
@@ -165,7 +167,7 @@ public class CommunicatorUI extends AppCompatActivity implements Serializable {
 
     }
 
-    private void sendMsg(Packet p) {
+    public void sendMsg(Packet p) {
         Gson gson = new Gson();
         String json = gson.toJson(p);
         Hub.sc.sendMessage(json);

@@ -1,8 +1,8 @@
 package dev.kamilklecha.autoswitchmobile;
 
 import java.io.Serializable;
-import java.sql.Time;
-import java.util.Date;
+import java.util.Calendar;
+
 
 public class Packet implements Serializable {
     public
@@ -10,7 +10,6 @@ public class Packet implements Serializable {
     String Action;
     String TimeMode;
     Integer seconds;
-    Time time;
-    Date date;
+    Calendar dt = Calendar.getInstance();
     Boolean force;
 }
