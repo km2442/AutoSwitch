@@ -213,7 +213,7 @@ public class AddCustomTask extends AppCompatActivity {
                             amount = Integer.parseInt(CertainCustomAmount.getText().toString());
                         }
                         catch (Exception e) {
-                            Toast.makeText(AddCustomTask.this, "Custom time value cannot be empty!", Toast.LENGTH_LONG);
+                            e.printStackTrace();
                         }
                         int index = CustomUnitspinner.getSelectedItemPosition();
                         switch(index) {

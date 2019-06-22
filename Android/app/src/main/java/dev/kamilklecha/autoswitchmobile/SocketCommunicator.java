@@ -1,6 +1,5 @@
 package dev.kamilklecha.autoswitchmobile;
 
-import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.NetworkOnMainThreadException;
 import android.util.Log;
@@ -10,10 +9,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.io.Serializable;
+import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketException;
+import java.net.SocketTimeoutException;
 
-public class SocketCommunicator implements Serializable {
+public class SocketCommunicator {
 
     private static final String TAG = "SocketCommunicator";
     public Socket socket;
@@ -22,42 +23,30 @@ public class SocketCommunicator implements Serializable {
     private PrintWriter output;
     final Handler handler = new Handler();
 
+    ConnectWait cw;
+
     public SocketCommunicator(final String SERVER_IP, final ConnectWait cw) {
+        this.cw = cw;
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    socket = new Socket(SERVER_IP, 1234);
+                    InetSocketAddress sockAdr = new InetSocketAddress(SERVER_IP, 1234);
+                    int timeout = 10000;
+                    socket = new Socket();
+                    socket.connect(sockAdr, timeout);
+
                     out = socket.getOutputStream();
                     output = new PrintWriter(out);
-
                     startReceiver();
-
-                    AsyncTask.execute(new Runnable() {
-                        @Override
-                        public void run() {
-                            int i = 0;
-                            if(socket.isConnected()) {
-                                cw.connected();
-                            } else {
-                                if(i == 20) {
-                                    cw.finish();
-                                }
-                                i++;
-                                try {
-                                    i++;
-                                    Thread.sleep(250);
-                                }
-                                catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }
-                    });
-
-                } catch (IOException e) {
+                    cw.connected();
+                }
+                catch(SocketTimeoutException e) {
+                    //TODO info
+                    Log.e(TAG, "SocketCommunicator: SocketTimeOutException");
                     e.printStackTrace();
-                } catch (Exception e) {
+                    cw.finish();
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
@@ -81,7 +70,7 @@ public class SocketCommunicator implements Serializable {
     }
 
     public void startReceiver() {
-        final Thread thread = new Thread(new Runnable() {
+        Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 boolean exception = false;
@@ -104,6 +93,9 @@ public class SocketCommunicator implements Serializable {
 //                                    tv.setText("From Server: " + st);
                             }
                         });
+                    } catch (SocketException e) {
+                        //TODO info
+                        cw.finish();
                     } catch (IOException e) {
                         e.printStackTrace();
                         exception = true;
@@ -111,7 +103,7 @@ public class SocketCommunicator implements Serializable {
                         Log.e(TAG, "startReceiver: NetworkOnMainThreadException");
                         e.printStackTrace();
                         exception = true;
-                    } catch (Exception e) {
+                    }  catch (Exception e) {
                         e.printStackTrace();
                         exception = true;
                     }
