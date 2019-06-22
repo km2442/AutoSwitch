@@ -20,15 +20,27 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    Button btn;
-    private EditText mEditTextSendMessage;
+    Button btnSettings;
+    Button btnClear;
+    Button btnSetup;
+
+    Toolbar toolbar;
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    ActionBarDrawerToggle toggle;
+
     private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+
+        btnSettings = findViewById(R.id.Main_Activitysettings);
+        btnClear = (Button) findViewById(R.id.main_IP_Clear);
+        btnSetup = (Button) findViewById(R.id.btn_setup);
+
+        toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -39,26 +51,23 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+        toggle = new ActionBarDrawerToggle(
+                this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
-        btn = findViewById(R.id.Main_Activitysettings);
-        View.OnClickListener cl = new View.OnClickListener() {
+        btnSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, Settings.class);
                 startActivity(i);
             }
-        };
-        btn.setOnClickListener(cl);
+        });
 
-        Button clear = (Button) findViewById(R.id.main_IP_Clear);
-        clear.setOnClickListener(new View.OnClickListener() {
+        btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 EditText IP1 = (EditText) findViewById(R.id.main_IP_1);
@@ -74,10 +83,8 @@ public class MainActivity extends AppCompatActivity
                 IP1.requestFocus();
             }
         });
-
-        final Button buttonSetup = (Button) findViewById(R.id.btn_setup);
-
-        buttonSetup.setOnClickListener(new View.OnClickListener() {
+        
+        btnSetup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(get_IP().length() > 0) {
