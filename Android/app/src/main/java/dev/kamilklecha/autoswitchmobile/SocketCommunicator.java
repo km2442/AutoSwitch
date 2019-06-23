@@ -4,6 +4,10 @@ import android.os.Handler;
 import android.os.NetworkOnMainThreadException;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -89,8 +93,13 @@ public class SocketCommunicator {
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-//                                if (st.trim().length() != 0)
-//                                    tv.setText("From Server: " + st);
+                                if (st.trim().length() != 0) {
+                                    Gson gson = new Gson();
+                                    JsonElement jsonTree = gson.toJsonTree(gson.toJson(st));
+                                    JsonObject jsonObject = jsonTree.getAsJsonObject();
+                                    if(jsonObject.getAsString("Type") == "Settings")
+                                        Log.d(TAG, "run: Działa xD");
+                                }
                             }
                         });
                     } catch (SocketException e) {

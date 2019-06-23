@@ -231,8 +231,8 @@ void Settings::on_Settings_DeveloperMode_currentIndexChanged(int index)
 void Settings::on_Settings_MultiInstance_currentIndexChanged(int index)
 {
     settings_changed = 1;
-    if(index == 0) multi = 0;
-    else multi = 1;
+    if(index == 0) multiInstance = 0;
+    else multiInstance = 1;
 }
 
 void Settings::on_Settings_Log_currentIndexChanged(int index)
@@ -257,12 +257,14 @@ void Settings::on_Settings_Tray_Switch_currentIndexChanged(int index)
     settings_changed = 1;
     if(index == 0)
     {
+        TrayVisible = 0;
         trayIcon->hide();
         ui->Settings_DeveloperMode->setCurrentIndex(0);
         if (ui->Settings_TrayConfiguration->isEnabled()) ui->Settings_TrayConfiguration->setEnabled(0);
     }
-    if(index == 1)
+    else if(index == 1)
     {
+        TrayVisible = 1;
         trayIcon->show();
         if (ui->Settings_TrayConfiguration->isEnabled() == 0) ui->Settings_TrayConfiguration->setEnabled(1);
     }
@@ -622,7 +624,7 @@ bool Settings::getTraySettings_Shutdown() const
 
 bool Settings::getMulti() const
 {
-    return multi;
+    return multiInstance;
 }
 
 bool Settings::getSendStatistics() const
@@ -687,6 +689,22 @@ void Settings::changeHideDialog(bool i)
     ui->Settings_HideDialogWarning->setCurrentIndex(i);
     settingsSave(0, "");
     settings_changed = 0;
+}
+
+QJsonObject Settings::settingsToJson()
+{
+    QJsonObject qjo;
+    qjo["Type"] = "Settings";
+    qjo["Language"] = language;
+    qjo["Theme"] = current_theme;
+    qjo["TrayVisible"] = TrayVisible;
+    qjo["Statistics"] = sendStatistics;
+    qjo["MultiInstance"] = multiInstance;
+    qjo["Logs"] = plzLog;
+    qjo["HideWarning"] = showHideDialog;
+    qjo["TestMode"] = dev_opt;
+
+    return qjo;
 }
 
 void Settings::on_Settings_PasswordButton_clicked()

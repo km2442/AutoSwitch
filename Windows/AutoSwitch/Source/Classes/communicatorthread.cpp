@@ -33,14 +33,19 @@ void CommunicatorThread::readyRead()
 
     qDebug() << socketDescriptor << " Data in: " << Data;
 
-    //socket->write(Data);
-
     QJsonDocument jsonResponse = QJsonDocument::fromJson(Data);
     QJsonObject jsonObject = jsonResponse.object();
 
     JsonActionParser *jap = JsonActionParser::getInstance();
     if(jsonObject.value("Exec").toString() == "AddTask") jap->parseNewAction(jsonObject);
-
+    else if(jsonObject.value("Exec").toString() == "GetSettings")
+    {
+        Settings *s = Settings::getInstance();
+        QJsonDocument jd(s->settingsToJson());
+        QByteArray json = jd.toJson(QJsonDocument::Compact);
+        qDebug() << json;
+        socket->write(json);
+    }
 }
 
 void CommunicatorThread::disconnected()

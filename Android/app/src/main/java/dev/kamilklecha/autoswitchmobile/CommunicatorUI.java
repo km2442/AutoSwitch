@@ -97,7 +97,12 @@ public class CommunicatorUI extends AppCompatActivity implements Serializable {
             }
         });
 
-        btnSettings.setEnabled(false);
+        btnSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenSettings();
+            }
+        });
 
         btnDisconnect.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,7 +169,9 @@ public class CommunicatorUI extends AppCompatActivity implements Serializable {
     }
 
     private void OpenSettings() {
-
+        Packet p = new Packet();
+        p.Exec = "GetSettings";
+        sendMsg(p);
     }
 
     public void sendMsg(Packet p) {

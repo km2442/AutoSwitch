@@ -17,6 +17,7 @@
 #include <QProcess>
 #include <QFileDialog>
 #include <QInputDialog>
+#include <QJsonObject>
 
 #include "Source/Main/functions.h"
 
@@ -41,6 +42,7 @@ public:
     void settingsSave(bool password, QString path);
     void settingsLoad();
     void changeHideDialog(bool i);
+    QJsonObject settingsToJson();
     ~Settings();
 
     int getCurrent_theme() const;
@@ -172,8 +174,9 @@ private:
     bool fexec;
     bool showHideDialog = 1;
     bool sendStatistics = 1;
-    bool multi = 1;
+    bool multiInstance = 1;
 
+    bool TrayVisible = 0;
     bool TraySettings_Shutdown = 1;
     bool TraySettings_Reboot = 1;
     bool TraySettings_Sleep = 1;

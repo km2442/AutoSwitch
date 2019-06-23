@@ -31,3 +31,14 @@ struct Task
 //    bool force = 0;
 //    short taskNumber = 0;
 //};
+
+struct SettingsPackage
+{
+    short Language;
+    short Theme;
+    short TrayState;
+    short SendStatistics;
+    short SaveLogs;
+    short WarningOnHide;
+    short TestMode;
+};
