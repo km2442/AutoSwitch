@@ -43,7 +43,8 @@ void CommunicatorThread::readyRead()
         Settings *s = Settings::getInstance();
         QJsonDocument jd(s->settingsToJson());
         QByteArray json = jd.toJson(QJsonDocument::Compact);
-        qDebug() << json;
+        json.append(('\n')).toDouble();
+        qDebug() << "Data out: " << json;
         socket->write(json);
     }
 }

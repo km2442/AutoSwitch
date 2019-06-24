@@ -23,7 +23,7 @@ bool JsonActionParser::parseNewAction(QJsonObject jsonObject)
     {
         switch(task.mode)
         {
-        case 's': shutdownComputer(true); break;
+        case 'w': shutdownComputer(true); break;
         case 'r': rebootComputer(true); break;
         case 'u': sleepComputer(); break;
         case 'h': hibernateComputer(); break;

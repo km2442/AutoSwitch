@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="Languages">
+        <item>Polski</item>
+        <item>English</item>
+    </string-array>
+
+    <string-array name="Themes">
+        <item>Fusion</item>
+        <item>Fusion Dark</item>
+        <item>Windows</item>
+    </string-array>
+
     <string-array name="DropdownActionsList">
         <item>Shutdown PC</item>
         <item>Reboot PC</item>

@@ -1,26 +1,23 @@
 package dev.kamilklecha.autoswitchmobile;
 
 import android.os.Handler;
-import android.os.NetworkOnMainThreadException;
 import android.util.Log;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.net.SocketException;
 import java.net.SocketTimeoutException;
 
 public class SocketCommunicator {
 
     private static final String TAG = "SocketCommunicator";
+
+    public Socket getSocket() {
+        return socket;
+    }
+
     public Socket socket;
 
     private OutputStream out;
@@ -74,51 +71,52 @@ public class SocketCommunicator {
     }
 
     public void startReceiver() {
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                boolean exception = false;
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                while (!exception) {
-                    if(socket.isClosed()) break;
-
-                    try {
-                        BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                        final String st = input.readLine();
-
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (st.trim().length() != 0) {
-                                    Gson gson = new Gson();
-                                    JsonElement jsonTree = gson.toJsonTree(gson.toJson(st));
-                                    JsonObject jsonObject = jsonTree.getAsJsonObject();
-                                    if(jsonObject.getAsString("Type") == "Settings")
-                                        Log.d(TAG, "run: Działa xD");
-                                }
-                            }
-                        });
-                    } catch (SocketException e) {
-                        //TODO info
-                        cw.finish();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        exception = true;
-                    } catch (NetworkOnMainThreadException e) {
-                        Log.e(TAG, "startReceiver: NetworkOnMainThreadException");
-                        e.printStackTrace();
-                        exception = true;
-                    }  catch (Exception e) {
-                        e.printStackTrace();
-                        exception = true;
-                    }
-                }
-            }
-        });
-            thread.start();
+//        Thread thread = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                boolean exception = false;
+//                try {
+//                    Thread.sleep(1000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                while (!exception) {
+//                    if(socket.isClosed()) {
+//                        Log.e(TAG, "Socket Closedd");
+//                        break;
+//                    }
+//
+//                    try {
+//                        BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+//                        final String st = input.readLine();
+//
+//                        handler.post(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                if (st.trim().length() != 0) {
+//                                    JsonObject json  = (JsonObject) new JsonParser().parse(st);
+//                                    Set<String> keys = json.keySet();
+//                                    Log.e(TAG, keys.toString());
+//                                }
+//                            }
+//                        });
+//                    } catch (SocketException e) {
+//                        //TODO info
+//                        cw.finish();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                        exception = true;
+//                    } catch (NetworkOnMainThreadException e) {
+//                        Log.e(TAG, "startReceiver: NetworkOnMainThreadException");
+//                        e.printStackTrace();
+//                        exception = true;
+//                    }  catch (Exception e) {
+//                        e.printStackTrace();
+//                        exception = true;
+//                    }
+//                }
+//            }
+//        });
+//        thread.start();
     }
 }

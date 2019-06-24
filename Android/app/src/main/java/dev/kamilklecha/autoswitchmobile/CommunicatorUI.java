@@ -169,9 +169,8 @@ public class CommunicatorUI extends AppCompatActivity implements Serializable {
     }
 
     private void OpenSettings() {
-        Packet p = new Packet();
-        p.Exec = "GetSettings";
-        sendMsg(p);
+        Intent i = new Intent(CommunicatorUI.this, PCSettings.class);
+        startActivity(i);
     }
 
     public void sendMsg(Packet p) {
