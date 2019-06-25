@@ -1,6 +1,5 @@
 package dev.kamilklecha.autoswitchmobile;
 
-import android.os.Handler;
 import android.util.Log;
 
 import java.io.IOException;
@@ -22,7 +21,6 @@ public class SocketCommunicator {
 
     private OutputStream out;
     private PrintWriter output;
-    final Handler handler = new Handler();
 
     ConnectWait cw;
 

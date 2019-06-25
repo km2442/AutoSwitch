@@ -12,11 +12,15 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class PCSettings extends AppCompatActivity {
 
+    private static final String TAG = "PCSettings";
     ProgressBar loadingBar;
     ConstraintLayout settingsLayout;
 
@@ -58,13 +62,24 @@ public class PCSettings extends AppCompatActivity {
         btnSave = (Button) findViewById(R.id.PCSettings_SaveSettings);
         btnCancel = (Button) findViewById(R.id.PCSettings_Cancel);
 
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         try {
             getSettings();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        loadingBar.setVisibility(View.INVISIBLE);
-        settingsLayout.setVisibility(View.VISIBLE);
+        try {
+            prepareSettingsUI();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
     void getSettings() throws InterruptedException {
@@ -79,26 +94,39 @@ public class PCSettings extends AppCompatActivity {
                 try {
                     BufferedReader in = new BufferedReader(new InputStreamReader(Hub.sc.socket.getInputStream()));
                     final String response = in.readLine();
-
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(PCSettings.this, response, Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    setJson(response);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         });
         thread.start();
-//        Thread thread = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                Socket s = Hub.sc.socket;
-//                BufferedReader input = null;
-//                try {
-//                    input = new BufferedReader(new InputStreamReader(s.getInputStream()));
-//                } catch (IOException e) {
+        thread.join();
+    }
+
+    void saveSettings() {
+
+    }
+
+    void prepareSettingsUI() throws JSONException {
+        JSONObject obj = new JSONObject(json);
+        if(obj.has("Type") && obj.getString("Type").equals("Settings")) {
+            toggleLanguage.setSelection(obj.getInt("Language"));
+            toggleTheme.setSelection(obj.getInt("Theme"));
+            toggleTray.setChecked(obj.getBoolean("TrayVisible"));
+            toggleStatistics.setChecked(obj.getBoolean("Statistics"));
+            toggleMultiInstance.setChecked(obj.getBoolean("MultiInstance"));
+            toggleLogging.setChecked(obj.getBoolean("Logs"));
+            toggleWarningHide.setChecked(obj.getBoolean("HideWarning"));
+            toggleTestMode.setChecked(obj.getBoolean("TestMode"));
+
+            loadingBar.setVisibility(View.INVISIBLE);
+            settingsLayout.setVisibility(View.VISIBLE);
+            btnSave.setEnabled(true);
+        }
+        else {
+            Toast.makeText(PCSettings.this, "Can't acquire Settings from PC!", Toast.LENGTH_LONG).show();
+            finish();
+        }
     }
 }
