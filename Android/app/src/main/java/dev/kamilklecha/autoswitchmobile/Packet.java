@@ -10,6 +10,19 @@ public class Packet implements Serializable {
     String Action;
     String TimeMode;
     Integer seconds;
-    Calendar dt = Calendar.getInstance();
+    Calendar dt;
     Boolean force;
+    SettingsPC PCSettings;
+}
+
+class SettingsPC implements Serializable {
+    public
+    int Language;
+    int Theme;
+    boolean TrayVisible;
+    boolean Statistics;
+    boolean MultiInstance;
+    boolean Logs;
+    boolean HideWarning;
+    boolean TestMode;
 }

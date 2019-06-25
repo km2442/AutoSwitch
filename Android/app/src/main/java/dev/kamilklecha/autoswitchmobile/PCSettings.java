@@ -43,7 +43,7 @@ public class PCSettings extends AppCompatActivity {
     String json = "";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pcsettings);
 
@@ -61,6 +61,17 @@ public class PCSettings extends AppCompatActivity {
 
         btnSave = (Button) findViewById(R.id.PCSettings_SaveSettings);
         btnCancel = (Button) findViewById(R.id.PCSettings_Cancel);
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    saveSettings();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +97,6 @@ public class PCSettings extends AppCompatActivity {
         Packet p = new Packet();
         p.Exec = "GetSettings";
         Hub.cui.sendMsg(p);
-        final Handler handler = new Handler(Looper.getMainLooper());
 
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -104,8 +114,45 @@ public class PCSettings extends AppCompatActivity {
         thread.join();
     }
 
-    void saveSettings() {
+    void saveSettings() throws InterruptedException {
+        Packet p = new Packet();
+        p.Exec = "SetSettings";
+        p.PCSettings = new SettingsPC();
+        p.PCSettings.Language = toggleLanguage.getSelectedItemPosition();
+        p.PCSettings.Theme = toggleTheme.getSelectedItemPosition();
+        p.PCSettings.TrayVisible = toggleTray.isChecked();
+        p.PCSettings.Statistics = toggleStatistics.isChecked();
+        p.PCSettings.MultiInstance = toggleMultiInstance.isChecked();
+        p.PCSettings.Logs = toggleLogging.isChecked();
+        p.PCSettings.HideWarning = toggleWarningHide.isChecked();
+        p.PCSettings.TestMode = toggleTestMode.isChecked();
 
+        final Handler handler = new Handler(Looper.getMainLooper());
+
+        Hub.cui.sendMsg(p);
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    BufferedReader in = new BufferedReader(new InputStreamReader(Hub.sc.socket.getInputStream()));
+                    final String response = in.readLine();
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            if(response.equals("Settings Setted")) {
+                                Toast.makeText(PCSettings.this, response, Toast.LENGTH_LONG).show();
+                                finish();
+                            }
+                            else Toast.makeText(PCSettings.this, "Error while saving settings!", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+        thread.join();
     }
 
     void prepareSettingsUI() throws JSONException {

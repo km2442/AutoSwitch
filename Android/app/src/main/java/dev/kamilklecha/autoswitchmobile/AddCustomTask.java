@@ -238,12 +238,14 @@ public class AddCustomTask extends AppCompatActivity {
                     else if(!err) Toast.makeText(AddCustomTask.this, "Selected value must NOT be 0!", Toast.LENGTH_LONG).show();
                 }
                 else if(MainRadioTime.isChecked()) {
+                    p.dt = Calendar.getInstance();
                     p.dt.set(1900,1,1, hourT, minuteT);
                     Hub.cui.sendMsg(p);
                     Toast.makeText(AddCustomTask.this, "Task added", Toast.LENGTH_LONG).show();
                     finish();
                 }
                 else if(MainRadioDateTime.isChecked()) {
+                    p.dt = Calendar.getInstance();
                     p.dt.set(yearDT, monthDT, dayDT, hourDT, minuteDT);
                     Hub.cui.sendMsg(p);
                     Toast.makeText(AddCustomTask.this, "Task added", Toast.LENGTH_LONG).show();
