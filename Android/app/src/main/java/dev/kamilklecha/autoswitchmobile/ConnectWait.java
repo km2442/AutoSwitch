@@ -20,7 +20,7 @@ public class ConnectWait extends AppCompatActivity {
         setContentView(R.layout.activity_connect_wait);
         TextView tw = (TextView) findViewById(R.id.connectWait_IP);
         IP = getIntent().getExtras().getString("IP");
-        addr = (IP + ':' + Port);
+        addr = (IP);
         tw.setText(addr);
 
         connectToPC(IP, Port);
