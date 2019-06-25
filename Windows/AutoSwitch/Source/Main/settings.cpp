@@ -220,12 +220,12 @@ void Settings::on_Settings_Theme_Choose_currentIndexChanged(int index)
 void Settings::on_Settings_DeveloperMode_currentIndexChanged(int index)
 {
     settings_changed = 1;
-    if(index == 0) dev_opt = 0;
-    else if(index == 1)
+    if(index)
     {
         dev_opt = 1;
         if (ui->Settings_Tray_Switch->currentIndex() == 0) ui->Settings_Tray_Switch->setCurrentIndex(1);
     }
+    else dev_opt = 0;
 }
 
 void Settings::on_Settings_MultiInstance_currentIndexChanged(int index)

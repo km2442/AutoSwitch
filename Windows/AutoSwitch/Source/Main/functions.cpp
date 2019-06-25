@@ -392,7 +392,6 @@ void lockComputer()
 
 void monitorOff()
 {
-    Sleep(500);
     Settings *s = Settings::getInstance();
     if (s->getDev_opt()) trayIcon->showMessage(QObject::tr("AutoSwitch TRYB TESTOWY"), QObject::tr("Wyłączenie Monitora"));
     else
@@ -402,6 +401,7 @@ void monitorOff()
             Database* db = Database::getInstance();
             db->sendStatistics("MonitorOff");
         }
+        Sleep(500);
         SendMessageTimeout(HWND_BROADCAST, WM_SYSCOMMAND, SC_MONITORPOWER, static_cast<LPARAM>(2), SMTO_ABORTIFHUNG, 100, nullptr);
     }
 

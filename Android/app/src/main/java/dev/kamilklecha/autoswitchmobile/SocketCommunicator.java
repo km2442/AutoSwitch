@@ -5,6 +5,7 @@ import android.util.Log;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.net.ConnectException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
@@ -30,7 +31,7 @@ public class SocketCommunicator {
             @Override
             public void run() {
                 try {
-                    InetSocketAddress sockAdr = new InetSocketAddress(SERVER_IP, 1234);
+                    InetSocketAddress sockAdr = new InetSocketAddress(SERVER_IP, 46784);
                     int timeout = 10000;
                     socket = new Socket();
                     socket.connect(sockAdr, timeout);
@@ -39,8 +40,11 @@ public class SocketCommunicator {
                     output = new PrintWriter(out);
                     cw.connected();
                 } catch (SocketTimeoutException e) {
-                    //TODO info
-                    Log.e(TAG, "SocketCommunicator: SocketTimeOutException");
+                    Log.e(TAG, "SocketTimeOutException");
+                    e.printStackTrace();
+                    cw.finish();
+                } catch (ConnectException e) {
+                    Log.e(TAG, "ConnectException");
                     e.printStackTrace();
                     cw.finish();
                 } catch (IOException e) {
