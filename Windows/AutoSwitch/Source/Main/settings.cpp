@@ -695,7 +695,7 @@ QJsonObject Settings::settingsToJson()
 {
     QJsonObject qjo;
     qjo["Type"] = "Settings";
-    qjo["Language"] = language;
+    qjo["Language"] = language - 1;
     qjo["Theme"] = current_theme;
     qjo["TrayVisible"] = TrayVisible;
     qjo["Statistics"] = sendStatistics;
@@ -705,6 +705,22 @@ QJsonObject Settings::settingsToJson()
     qjo["TestMode"] = dev_opt;
 
     return qjo;
+}
+
+void Settings::JsonToSettings(QJsonObject json)
+{
+    ui->Settings_Theme_Choose->setCurrentIndex(json.value("Theme").toInt());
+    ui->Settings_LanguageSelect->setCurrentIndex(json.value("Language").toInt());
+    ui->Settings_Tray_Switch->setCurrentIndex(static_cast<int>(json.value("TrayVisible").toBool()));
+    ui->Settings_Log->setCurrentIndex(static_cast<int>(json.value("Logs").toBool()));
+    ui->Settings_Statistics->setCurrentIndex(static_cast<int>(json.value("Statistics").toBool()));
+    ui->Settings_MultiInstance->setCurrentIndex(static_cast<int>(json.value("MultiInstance").toBool()));
+    ui->Settings_DeveloperMode->setCurrentIndex(static_cast<int>(json.value("TestMode").toBool()));
+    ui->Settings_HideDialogWarning->setCurrentIndex(static_cast<int>(json.value("HideWarning").toBool()));
+
+    settingsSave(0, "");
+    settingsLoad();
+    qApp->processEvents();
 }
 
 void Settings::on_Settings_PasswordButton_clicked()

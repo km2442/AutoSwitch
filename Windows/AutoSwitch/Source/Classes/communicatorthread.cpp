@@ -47,6 +47,15 @@ void CommunicatorThread::readyRead()
         qDebug() << "Data out: " << json;
         socket->write(json);
     }
+    else if(jsonObject.value("Exec").toString() == "SetSettings")
+    {
+        Settings *s = Settings::getInstance();
+        s->JsonToSettings(jsonObject.value("PCSettings").toObject());
+
+        QByteArray res = "Settings Setted\n";
+        qDebug() << "Data out: " << res;
+        socket->write(res);
+    }
 }
 
 void CommunicatorThread::disconnected()

@@ -43,6 +43,7 @@ public:
     void settingsLoad();
     void changeHideDialog(bool i);
     QJsonObject settingsToJson();
+    void JsonToSettings(QJsonObject json);
     ~Settings();
 
     int getCurrent_theme() const;
