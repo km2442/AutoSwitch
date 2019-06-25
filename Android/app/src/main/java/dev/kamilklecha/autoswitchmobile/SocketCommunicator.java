@@ -39,10 +39,8 @@ public class SocketCommunicator {
 
                     out = socket.getOutputStream();
                     output = new PrintWriter(out);
-                    startReceiver();
                     cw.connected();
-                }
-                catch(SocketTimeoutException e) {
+                } catch (SocketTimeoutException e) {
                     //TODO info
                     Log.e(TAG, "SocketCommunicator: SocketTimeOutException");
                     e.printStackTrace();
@@ -68,55 +66,5 @@ public class SocketCommunicator {
             }
         });
         thread.start();
-    }
-
-    public void startReceiver() {
-//        Thread thread = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                boolean exception = false;
-//                try {
-//                    Thread.sleep(1000);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//                while (!exception) {
-//                    if(socket.isClosed()) {
-//                        Log.e(TAG, "Socket Closedd");
-//                        break;
-//                    }
-//
-//                    try {
-//                        BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-//                        final String st = input.readLine();
-//
-//                        handler.post(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                if (st.trim().length() != 0) {
-//                                    JsonObject json  = (JsonObject) new JsonParser().parse(st);
-//                                    Set<String> keys = json.keySet();
-//                                    Log.e(TAG, keys.toString());
-//                                }
-//                            }
-//                        });
-//                    } catch (SocketException e) {
-//                        //TODO info
-//                        cw.finish();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                        exception = true;
-//                    } catch (NetworkOnMainThreadException e) {
-//                        Log.e(TAG, "startReceiver: NetworkOnMainThreadException");
-//                        e.printStackTrace();
-//                        exception = true;
-//                    }  catch (Exception e) {
-//                        e.printStackTrace();
-//                        exception = true;
-//                    }
-//                }
-//            }
-//        });
-//        thread.start();
     }
 }

@@ -67,7 +67,7 @@ public class PCSettings extends AppCompatActivity {
         settingsLayout.setVisibility(View.VISIBLE);
     }
 
-    private boolean getSettings() throws InterruptedException {
+    void getSettings() throws InterruptedException {
         Packet p = new Packet();
         p.Exec = "GetSettings";
         Hub.cui.sendMsg(p);
@@ -100,22 +100,5 @@ public class PCSettings extends AppCompatActivity {
 //                try {
 //                    input = new BufferedReader(new InputStreamReader(s.getInputStream()));
 //                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                try {
-//                    while(json.length() == 0) {
-//                        final String st = input.readLine();
-//                        if(st.trim().length() != 0) {
-//                            setJson(st.toString());
-//                        }
-//                    }
-//                } catch (SocketTimeoutException e) {
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-//        thread.start();
-        return true;
     }
 }
